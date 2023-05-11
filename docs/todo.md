@@ -6,7 +6,7 @@
 
 ## Layouts
 
-- [ ] UsersLayout
+- [x] UsersLayout
 - [ ] CustomersLayout
 
 ## Components
