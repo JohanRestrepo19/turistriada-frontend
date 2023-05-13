@@ -3,6 +3,7 @@
 ## Theme
 
 - [x] Make custom daisyUI theme
+- [ ] Install custom app font
 
 ## Layouts
 
@@ -11,13 +12,13 @@
 
 ## Components
 
-- [ ] Card
-- [ ] Button
+- [x] FormCard
+- [x] Button
 - [ ] Footer
 - [ ] Modal
 - [ ] UserNavbar
 - [ ] CustomerNavbar
-- [ ] StyledInputs
+- [ ] Input
 - [ ] Pagination
 - [ ] Filter
 

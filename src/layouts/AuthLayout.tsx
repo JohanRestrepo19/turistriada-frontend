@@ -6,7 +6,9 @@ interface AuthLayoutProps {
 export const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <div className="container mx-auto min-h-screen p-4 bg-[#C8E6C9]/20 flex flex-col gap-4">
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow flex justify-center items-center">
+        {children}
+      </div>
     </div>
   )
 }
