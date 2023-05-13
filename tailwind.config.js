@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary-light': '#C8E6C9'
+        'primary-light': '#C8E6C9',
+        'form-text': '#808080'
       }
     }
   },
