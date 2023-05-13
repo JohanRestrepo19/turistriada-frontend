@@ -19,13 +19,13 @@ export const Button = ({
 }: ButtonProps) => {
   //
   const buttonStyles = useMemo(() => {
-    const buttonStyle = styleType === 'primary' ? 'primary' : 'accent'
+    const buttonStyle = styleType === 'primary' ? 'btn-primary' : 'btn-accent'
     const disabled = props.disabled ? 'disabled' : ''
-    return `btn btn-${buttonStyle} ${disabled}`
+    return `btn ${buttonStyle} ${disabled}`
   }, [styleType, props.disabled])
 
   return (
-    <button {...props} className={buttonStyles}>
+    <button className={buttonStyles} {...props}>
       {icon && (
         <span className="mr-2">
           <FontAwesomeIcon icon={icon} size={iconSize} />
