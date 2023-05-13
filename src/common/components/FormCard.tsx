@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { Input } from './Input'
 
 interface FormCardProps {
   title?: string
@@ -11,6 +12,7 @@ export const FormCard = ({ title, children }: FormCardProps) => {
       <div className="card-body">
         {title && <h2 className="card-title">{title}</h2>}
         {children}
+        <Input title="Username" />
       </div>
     </div>
   )

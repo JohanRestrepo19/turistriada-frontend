@@ -16,7 +16,7 @@ export const Input = ({ icon, title, ...props }: InputProps) => {
 
   return (
     <div className="text-form-text">
-      <label className="ml-1 capitalize">{title}</label>
+      <label className="ml-1 capitalize font-semibold">{title}</label>
       <div className="relative">
         {icon && (
           <span className="absolute top-3 left-3">
