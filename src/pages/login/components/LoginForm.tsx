@@ -1,7 +1,6 @@
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import turistriadaLogo from '@/assets/brand/turistriada.png'
-import { Input } from '@/common/components/Input'
-import { Button } from '@/common/components/Button'
+import { Input, Button } from '@/common/components'
 
 export const LoginForm = () => {
   return (

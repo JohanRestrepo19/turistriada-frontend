@@ -1,4 +1,4 @@
-import { FormCard } from '@/common/components/FormCard'
+import { FormCard } from '@/common/components'
 import { AuthLayout } from '@/layouts/AuthLayout'
 import { LoginForm } from './components/LoginForm'
 
