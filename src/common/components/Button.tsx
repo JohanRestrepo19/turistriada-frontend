@@ -1,6 +1,7 @@
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useMemo, ButtonHTMLAttributes, ReactNode } from 'react'
+import classNames from 'classnames'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
@@ -12,17 +13,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({
   children,
+  className,
   icon,
   iconSize,
   styleType,
   ...props
 }: ButtonProps) => {
-  //
-  const buttonStyles = useMemo(() => {
-    const buttonStyle = styleType === 'primary' ? 'btn-primary' : 'btn-accent'
-    const disabled = props.disabled ? 'disabled' : ''
-    return `btn ${buttonStyle} ${disabled}`
-  }, [styleType, props.disabled])
+  const buttonStyles = classNames({
+    [`${className}`]: className,
+    btn: true,
+    'btn-primary': styleType === 'primary',
+    'btn-accent': styleType === 'secondary',
+    disabled: props.disabled
+  })
 
   return (
     <button className={buttonStyles} {...props}>
