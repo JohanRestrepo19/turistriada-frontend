@@ -24,7 +24,7 @@
 
 ## PAGES
 
-- [ ] Login
+- [x] Login
 - [ ] SignUp User
 - [ ] SignUp Customer
 - [ ] HomePage

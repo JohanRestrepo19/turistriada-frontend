@@ -1,12 +1,12 @@
 import { FormCard } from '@/common/components'
 import { AuthLayout } from '@/layouts/AuthLayout'
-import { LoginForm } from './components/LoginForm'
+import { RegisterForm } from './components/RegisterForm'
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
   return (
     <AuthLayout>
       <FormCard>
-        <LoginForm />
+        <RegisterForm />
       </FormCard>
     </AuthLayout>
   )
