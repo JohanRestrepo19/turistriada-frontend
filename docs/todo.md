@@ -16,8 +16,8 @@
 - [x] FormCard
 - [x] Button
 - [x] Input
-- [ ] Footer
-- [ ] UserNavbar
+- [x] Footer
+- [x] UserNavbar
 - [ ] CustomerNavbar
 - [ ] Modal
 - [ ] Pagination
