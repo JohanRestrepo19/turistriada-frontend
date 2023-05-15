@@ -80,7 +80,7 @@ export const RegisterForm = () => {
 
           <div>
             <b className="text-center text-black block">¿Ya tienes cuenta?</b>
-            <Link to={'/auth/'} className="text-center text-primary block">
+            <Link to={'/login'} className="text-center text-primary block">
               Ingresa aquí
             </Link>
           </div>
