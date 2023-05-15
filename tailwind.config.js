@@ -5,7 +5,8 @@ export default {
     extend: {
       colors: {
         'primary-light': '#C8E6C9',
-        'form-text': '#808080'
+        'form-text': '#808080',
+        navbar: '#212121'
       }
     }
   },

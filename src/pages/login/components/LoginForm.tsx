@@ -12,10 +12,7 @@ export const LoginForm = () => {
         <Button styleType="primary">INGRESAR</Button>
         <div>
           <b className="text-center text-black block">¿No tienes una cuenta?</b>
-          <Link
-            to={'/auth/register'}
-            className="text-center text-primary block"
-          >
+          <Link to={'/register'} className="text-center text-primary block">
             Registrate aquí
           </Link>
         </div>

@@ -7,6 +7,7 @@
 
 ## Layouts
 
+- [x] AuhtLayout
 - [x] UsersLayout
 - [ ] CustomersLayout
 
@@ -16,16 +17,16 @@
 - [x] Button
 - [x] Input
 - [ ] Footer
-- [ ] Modal
 - [ ] UserNavbar
 - [ ] CustomerNavbar
+- [ ] Modal
 - [ ] Pagination
 - [ ] Filter
 
 ## PAGES
 
 - [x] Login
-- [ ] SignUp User
+- [x] SignUp User
 - [ ] SignUp Customer
 - [ ] HomePage
 - [ ] ViewProfile User
