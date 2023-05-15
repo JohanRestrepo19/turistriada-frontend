@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
-import { AuthLayout } from '@/layouts/AuthLayout'
+import { AuthLayout } from '@/layouts/auth'
+import { UserLayout } from '@/layouts/user'
 import { HomePage } from '@/pages/home'
 import { LoginPage } from '@/pages/login'
 import { RegisterPage } from '@/pages/register'
-import { UserLayout } from '@/layouts/UserLayout'
 
 /* import { AuthRoutes } from './AuthRoutes' */
 

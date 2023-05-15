@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Avatar, TuristriadaHeading } from './'
+import { Avatar, TuristriadaHeading } from '@/common/components'
 
 export const UserNavbar = () => {
   return (
