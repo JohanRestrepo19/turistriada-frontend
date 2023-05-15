@@ -1,5 +1,6 @@
-import { UserNavbar } from './components/UserNavbar'
 import { Outlet } from 'react-router-dom'
+import { Footer } from '@/common/components/Footer'
+import { UserNavbar } from './components/UserNavbar'
 
 export const UserLayout = () => {
   return (
@@ -10,7 +11,7 @@ export const UserLayout = () => {
           <Outlet />
         </div>
       </div>
-      <div className="w-full bg-blue-300"> 4. Footer </div>
+      <Footer />
     </div>
   )
 }
