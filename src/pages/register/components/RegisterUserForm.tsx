@@ -1,20 +1,17 @@
 import { Link } from 'react-router-dom'
 import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { useForm } from 'react-hook-form'
-import {
-  RegisterFormValues,
-  registerResolver
-} from '../validations/registerValidations'
+import { RegisterUser, registerUserResolver } from '../validations/registerUser'
 
-export const RegisterForm = () => {
+export const RegisterUserForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<RegisterFormValues>({
-    resolver: registerResolver
+  } = useForm<RegisterUser>({
+    resolver: registerUserResolver
   })
-  const handleSubmitForm = (data: RegisterFormValues) => {
+  const handleSubmitForm = (data: RegisterUser) => {
     console.log('FieldValues: ', data)
   }
   return (
