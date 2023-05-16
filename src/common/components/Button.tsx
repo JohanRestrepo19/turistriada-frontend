@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
   icon?: IconProp
   iconSize?: SizeProp
-  styleType: 'primary' | 'secondary'
+  styleType?: 'primary' | 'secondary'
   rounded?: boolean
 }
 
