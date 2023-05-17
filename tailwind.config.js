@@ -6,6 +6,7 @@ export default {
       colors: {
         'primary-light': '#C8E6C9',
         'form-text': '#808080',
+        'primary-text': '#212121',
         'secondary-text': '#757575',
         navbar: '#212121'
       }

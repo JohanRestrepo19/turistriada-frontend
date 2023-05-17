@@ -28,7 +28,7 @@
 - [x] Login
 - [x] SignUp User
 - [ ] SignUp Customer
-- [ ] HomePage
+- [x] HomePage
 - [ ] ViewProfile User
 - [ ] ViewProfile Customer
 - [ ] EditProfile User
