@@ -2,6 +2,7 @@
 
 type ModelId = string
 export type UserRole = 'user' | 'customer' | 'admin' | null
+export type Category = 'comida' | 'hospedaje' | 'instituciones culturales'
 
 export interface User {
   _id: ModelId
@@ -30,8 +31,9 @@ export interface Activity {
 export interface Place {
   _id: ModelId
   name: string
-  imgUrl?: string
+  category: Category //TODO: Actualizar el schema de category en mockaroo
   description: string
+  imgUrl?: string
   location: string
   activities?: Activity[]
   reviews?: Review[]

@@ -22,7 +22,7 @@ export const Avatar = ({
   if (imgSrc)
     return (
       <div className={avatarStyles}>
-        <div className="w-12 rounded-full">
+        <div className="rounded-full">
           <img src={imgSrc} height={height} width={width} />
         </div>
       </div>

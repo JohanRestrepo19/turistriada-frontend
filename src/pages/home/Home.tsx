@@ -1,3 +1,4 @@
+import { Place } from '@/common/types'
 import { CategoriesFilter } from './components/CategoriesFilter'
 import { CitiesCarousel } from './components/CitiesCarousel'
 import { PlacesList } from './components/PlacesList'
@@ -7,10 +8,10 @@ import places from '@/common/data/places.json'
 
 export const Home = () => {
   return (
-    <div className="flex flex-col gap-y-9">
+    <div className="flex flex-col gap-y-12">
       <CitiesCarousel />
       <CategoriesFilter />
-      <PlacesList places={places} />
+      <PlacesList places={places as Place[]} />
     </div>
   )
 }

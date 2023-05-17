@@ -1,25 +1,32 @@
 import type { Place } from '@/common/types'
-import { Button } from '..'
+import { Avatar, Button } from '../'
 
 interface PlaceCardProps {
   place: Place
 }
 
-const imgPath2 = '/src/assets/mock/fake-255-150.jpg'
-
 export const PlaceCard = ({ place }: PlaceCardProps) => {
   return (
-    <div className="card w-96 bg-white shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
+    <div className="card rounded-lg w-96 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
       <figure>
-        <img className="w-full" src={imgPath2} alt="Shoes" />
+        <img className="w-full h-52" src={place.imgUrl} alt="Shoes" />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title h-12">{place.name}</h2>
+      <div className="card-body flex flex-col justify-evenly">
+        <div className="card-title h-24">
+          <Avatar imgSrc={place.createdBy?.profileImgUrl} />
+          <div className="ml-8">
+            <p className="font-semibold">{place.name}</p>
+            <p className="font-light">{place.createdBy?.username}</p>
+          </div>
+        </div>
+
         <div className="card-actions justify-center">
-          <p className="h-32 text-ellipsis overflow-hidden">
+          <p className="h-32 text-justify overflow-hidden">
             {place.description}
           </p>
-          <Button styleType="primary">Ver detalles</Button>
+          <Button styleType="primary" rounded className="px-10">
+            Ver detalles
+          </Button>
         </div>
       </div>
     </div>
