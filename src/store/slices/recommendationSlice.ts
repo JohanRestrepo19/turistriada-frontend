@@ -1,22 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import type { Category, Place } from '@/common/types'
-import places from '@/common/data/places.json'
+import type { Category, Place, RequestStatus } from '@/common/types'
+import { RootState } from '..'
+import { getRecommendations } from '@/services/firebase/recommendations'
+
+// Thunk
+export const fetchRecommendedPlaces = createAsyncThunk<Place[] | undefined>(
+  'recommendations/fetchPlaces',
+  async (_, thunkApi) => {
+    try {
+      return await getRecommendations()
+    } catch (error) {
+      thunkApi.rejectWithValue(error)
+    }
+  }
+)
 
 interface RecommendationsState {
   places: Place[]
+  placesStatus: RequestStatus
   filteredPlaces: Place[]
 }
 
 const initialState: RecommendationsState = {
-  places: places as Place[], //NOTE: Esto debería ser un arreglo vacio
-  filteredPlaces: places as Place[]
+  places: [],
+  placesStatus: 'pending',
+  filteredPlaces: []
 }
 
+//Slice
 export const recommendationsSlice = createSlice({
   name: 'recommendations',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     filterByCategory: (state, action: PayloadAction<Category>) => {
@@ -26,7 +41,25 @@ export const recommendationsSlice = createSlice({
           place => place.category === action.payload
         )
     }
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchRecommendedPlaces.pending, state => {
+      state.placesStatus = 'pending'
+    })
+    builder.addCase(fetchRecommendedPlaces.fulfilled, (state, action) => {
+      state.placesStatus = 'fulfilled'
+      state.places = action.payload as Place[]
+      state.filteredPlaces = state.places
+    })
+    builder.addCase(fetchRecommendedPlaces.rejected, state => {
+      state.placesStatus = 'rejected'
+    })
   }
 })
 
+// Selectors
+export const selectFilteredPlaces = (state: RootState) =>
+  state.recommendations.filteredPlaces
+
+//Actions
 export const { filterByCategory } = recommendationsSlice.actions

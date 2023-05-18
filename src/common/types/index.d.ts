@@ -1,7 +1,11 @@
 // TODO: Mejorar todas las interfaces con respecto al modelo de datos
 
 type ModelId = string
+
+export type RequestStatus = 'pending' | 'fulfilled' | 'rejected'
+
 export type UserRole = 'user' | 'customer' | 'admin' | null
+
 export type Category =
   | 'comida'
   | 'hospedaje'
