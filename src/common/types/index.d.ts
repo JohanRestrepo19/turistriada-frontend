@@ -2,7 +2,11 @@
 
 type ModelId = string
 export type UserRole = 'user' | 'customer' | 'admin' | null
-export type Category = 'comida' | 'hospedaje' | 'instituciones culturales'
+export type Category =
+  | 'comida'
+  | 'hospedaje'
+  | 'instituciones culturales'
+  | 'todo'
 
 export interface User {
   _id: ModelId

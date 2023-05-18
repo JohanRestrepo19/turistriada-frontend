@@ -57,7 +57,7 @@
     "_id": "1f3e82c8-4122-44ee-812f-4566dcf8dd38",
     "name": "Rogahn-Shields",
     "description": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "Apt 427",
     "imgUrl": "http://dummyimage.com/342x292.png/5fa2dd/ffffff",
     "activities": [
@@ -126,7 +126,7 @@
     "_id": "6d1d7ddc-d3f8-40ef-8f02-49e91871eca3",
     "name": "Considine-Pouros",
     "description": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "1st Floor",
     "imgUrl": "http://dummyimage.com/466x206.png/ff4444/ffffff",
     "activities": [],
@@ -154,7 +154,7 @@
     "_id": "030c45b0-fbdc-4678-8fa6-16418a7fcd9b",
     "name": "Lakin, Terry and DuBuque",
     "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "PO Box 71370",
     "imgUrl": "http://dummyimage.com/474x250.png/dddddd/000000",
     "activities": [
@@ -405,7 +405,7 @@
     "_id": "880fe53e-935f-45d9-8dd6-e435592a409d",
     "name": "Smitham LLC",
     "description": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "Apt 1840",
     "imgUrl": "http://dummyimage.com/439x195.png/cc0000/ffffff",
     "activities": [
@@ -719,7 +719,7 @@
     "_id": "5d7c495e-ed01-4867-aec6-8c5229430b3e",
     "name": "McLaughlin-Stehr",
     "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "Suite 21",
     "imgUrl": "http://dummyimage.com/322x239.png/dddddd/000000",
     "activities": [
@@ -904,7 +904,7 @@
     "_id": "535ba6cb-7687-4f57-aa0b-027108748167",
     "name": "Ratke Group",
     "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "Suite 98",
     "imgUrl": "http://dummyimage.com/264x183.png/5fa2dd/ffffff",
     "activities": [
@@ -1022,7 +1022,7 @@
     "_id": "77ed0892-bfcd-4f4d-bbc5-9ea146b56bb1",
     "name": "Cole, Conn and Macejkovic",
     "description": "In congue. Etiam justo. Etiam pretium iaculis justo.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "PO Box 13452",
     "imgUrl": "http://dummyimage.com/344x284.png/cc0000/ffffff",
     "activities": [
@@ -1145,7 +1145,7 @@
     "_id": "14da7947-8860-4e5f-b908-09898d608a90",
     "name": "Osinski, Lowe and Hudson",
     "description": "In congue. Etiam justo. Etiam pretium iaculis justo.",
-    "category": "hospedajes",
+    "category": "hospedaje",
     "location": "PO Box 91400",
     "imgUrl": "http://dummyimage.com/393x222.png/5fa2dd/ffffff",
     "activities": [],

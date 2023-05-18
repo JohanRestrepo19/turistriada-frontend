@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { counterSlice } from './slices/counterSlice'
+import { recommendationsSlice } from './slices/recomendationSlice'
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer
+    recommendations: recommendationsSlice.reducer
   }
 })
 
