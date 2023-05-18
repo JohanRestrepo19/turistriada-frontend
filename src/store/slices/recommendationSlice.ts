@@ -5,12 +5,12 @@ import type { Category, Place } from '@/common/types'
 import places from '@/common/data/places.json'
 
 interface RecommendationsState {
-  places: Place[] //NOTE: Esto debería ser un arreglo vacio
+  places: Place[]
   filteredPlaces: Place[]
 }
 
 const initialState: RecommendationsState = {
-  places: places as Place[],
+  places: places as Place[], //NOTE: Esto debería ser un arreglo vacio
   filteredPlaces: places as Place[]
 }
 
@@ -20,20 +20,12 @@ export const recommendationsSlice = createSlice({
   initialState,
   reducers: {
     filterByCategory: (state, action: PayloadAction<Category>) => {
-      state.filteredPlaces = state.places.filter(
-        place => place.category === action.payload
-      )
+      if (action.payload === 'todo') state.filteredPlaces = state.places
+      else
+        state.filteredPlaces = state.places.filter(
+          place => place.category === action.payload
+        )
     }
-    /* increment: state => { */
-    /*   state.value += 1 */
-    /* }, */
-    /* decrement: state => { */
-    /*   state.value -= 1 */
-    /* }, */
-    /* // Use the PayloadAction type to declare the contents of `action.payload` */
-    /* incrementByAmount: (state, action: PayloadAction<number>) => { */
-    /*   state.value += action.payload */
-    /* } */
   }
 })
 

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { recommendationsSlice } from './slices/recomendationSlice'
+import { recommendationsSlice } from './slices/recommendationSlice'
 
 export const store = configureStore({
   reducer: {
