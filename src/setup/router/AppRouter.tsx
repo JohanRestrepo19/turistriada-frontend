@@ -3,7 +3,7 @@ import { AuthLayout } from '@/layouts/auth'
 import { UserLayout } from '@/layouts/user'
 import { Home } from '@/pages/home'
 import { Login } from '@/pages/login'
-import { RegisterCustomer, RegisterUser } from '@/pages/register'
+import { Register, RegisterCustomer, RegisterUser } from '@/pages/register'
 
 export const AppRouter = () => {
   return (
@@ -11,6 +11,7 @@ export const AppRouter = () => {
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/register/user" element={<RegisterUser />} />
           <Route path="/register/customer" element={<RegisterCustomer />} />
         </Route>
