@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@/common/hooks'
-import { filterByCategory } from '@/store/slices/recomendationSlice'
+import { filterByCategory } from '@/store/slices/recommendationSlice'
 import { Category } from '@/common/types'
 
 export const CategoriesFilter = () => {
