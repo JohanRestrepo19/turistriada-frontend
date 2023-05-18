@@ -1,7 +1,7 @@
 import { InferType, object, ref, string } from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-const registerFormSchema = object({
+const registerUserSchema = object({
   documentNumber: string()
     .min(10, 'Tu documento debe tener 10 digitos')
     .required('Necesita un documento!'),
@@ -18,6 +18,6 @@ const registerFormSchema = object({
   )
 })
 
-export type RegisterFormValues = InferType<typeof registerFormSchema>
+export type RegisterUser = InferType<typeof registerUserSchema>
 
-export const registerResolver = yupResolver(registerFormSchema)
+export const registerUserResolver = yupResolver(registerUserSchema)

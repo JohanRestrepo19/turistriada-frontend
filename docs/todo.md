@@ -16,8 +16,8 @@
 - [x] FormCard
 - [x] Button
 - [x] Input
-- [ ] Footer
-- [ ] UserNavbar
+- [x] Footer
+- [x] UserNavbar
 - [ ] CustomerNavbar
 - [ ] Modal
 - [ ] Pagination
@@ -28,7 +28,7 @@
 - [x] Login
 - [x] SignUp User
 - [ ] SignUp Customer
-- [ ] HomePage
+- [x] HomePage
 - [ ] ViewProfile User
 - [ ] ViewProfile Customer
 - [ ] EditProfile User

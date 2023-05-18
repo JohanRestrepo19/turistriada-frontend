@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
   icon?: IconProp
   iconSize?: SizeProp
-  styleType: 'primary' | 'secondary'
+  styleType?: 'primary' | 'secondary'
   rounded?: boolean
 }
 
@@ -16,6 +16,7 @@ export const Button = ({
   className,
   icon,
   iconSize,
+  rounded,
   styleType,
   ...props
 }: ButtonProps) => {
@@ -24,7 +25,8 @@ export const Button = ({
     btn: true,
     'btn-primary': styleType === 'primary',
     'btn-accent': styleType === 'secondary',
-    disabled: props.disabled
+    disabled: props.disabled,
+    'rounded rounded-full': rounded
   })
 
   return (
