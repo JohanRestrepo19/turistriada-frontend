@@ -19,6 +19,10 @@ export const AppRouter = () => {
         <Route element={<UserLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/places" element={<h1>places</h1>} />
+          <Route
+            path="/places/:placeId"
+            element={<h1>Show place details</h1>}
+          />
           <Route path="/categories" element={<h1>categories</h1>} />
         </Route>
       </Routes>
