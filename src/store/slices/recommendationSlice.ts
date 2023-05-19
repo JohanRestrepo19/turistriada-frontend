@@ -61,5 +61,8 @@ export const recommendationsSlice = createSlice({
 export const selectFilteredPlaces = (state: RootState) =>
   state.recommendations.filteredPlaces
 
+export const selectPlacesStatus = (state: RootState) =>
+  state.recommendations.placesStatus
+
 //Actions
 export const { filterByCategory } = recommendationsSlice.actions
