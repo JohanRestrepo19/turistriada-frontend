@@ -1,11 +1,18 @@
 import type { Place } from '@/common/types'
 import { Avatar, Button } from '../'
+import { useNavigate } from 'react-router-dom'
 
 interface PlaceCardProps {
   place: Place
 }
 
 export const PlaceCard = ({ place }: PlaceCardProps) => {
+  const navigate = useNavigate()
+
+  const handleClickDetails = () => {
+    navigate(`/places/${place._id}`)
+  }
+
   return (
     <div className="card rounded-lg w-64 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
       <figure>
@@ -29,7 +36,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         </div>
 
         <div className="card-actions justify-center gap-y-4">
-          <Button styleType="primary" rounded>
+          <Button styleType="primary" rounded onClick={handleClickDetails}>
             Ver detalles
           </Button>
         </div>
