@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { InputHTMLAttributes, forwardRef } from 'react'
 
 interface FileInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -6,15 +7,20 @@ interface FileInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
-  ({ title, error, ...props }, ref) => {
+  ({ title, error, className, ...props }, ref) => {
+    const containerStyles = classNames({
+      [`${className}`]: className,
+      'form-control w-full text-form-text': true
+    })
     return (
-      <div className="form-control w-full max-w-xs text-form-text">
+      <div className={containerStyles}>
         <label className="label">
           <span className="capitalize font-semibold">{title}</span>
         </label>
         <input
           type="file"
-          className="file-input file-input-bordered w-full max-w-xs"
+          multiple
+          className="file-input file-input-bordered w-full"
           {...props}
           ref={ref}
         />

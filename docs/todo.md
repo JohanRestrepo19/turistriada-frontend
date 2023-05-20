@@ -27,7 +27,7 @@
 
 - [x] Login
 - [x] SignUp User
-- [ ] SignUp Customer
+- [x] SignUp Customer
 - [x] HomePage
 - [ ] ViewProfile User
 - [ ] ViewProfile Customer
@@ -36,7 +36,7 @@
 - [ ] DeleteProfile
 - [ ] PublishPromoAdvertisements
 - [ ] PublishProductorService
-- [ ] PublishPlace _**Choose which out of the two options**_
+- [x] PublishPlace
 - [ ] ViewCategory
 - [ ] AprobePromoAdvertisement
 - [ ] PublishFactsAndCuriosities

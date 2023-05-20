@@ -1,4 +1,4 @@
-import { Button, Input } from '@/common/components'
+import { Button, FileInput, Input } from '@/common/components'
 import { useForm } from 'react-hook-form'
 import { PublishPlace, publishPlaceResolver } from '../validations/PublishPlace'
 
@@ -48,10 +48,9 @@ export const PublishPlaceForm = () => {
           error={errors.aboutExperience?.message}
         />
         {/* Fotos */}
-        <Input
-          type="file"
-          className="col-span-2 "
+        <FileInput
           title="Subir imagenes"
+          className="col-span-2"
           {...register('image')}
           error={errors.image?.message}
         />

@@ -1,4 +1,4 @@
-// TODO: Mejorar todas las interfaces con respecto al modelo de datos
+// TODO: Improve interfaces respect to data model.
 
 type ModelId = string
 
@@ -39,7 +39,7 @@ export interface Activity {
 export interface Place {
   _id: ModelId
   name: string
-  category: Category //TODO: Actualizar el schema de category en mockaroo
+  category: Category //TODO: Update category mockarro schema
   description: string
   imgUrl?: string
   location: string
