@@ -21,7 +21,7 @@ export const RegisterCustomerForm = () => {
     <>
       <div className="flex flex-wrap justify-between items-center gap-x-4 ">
         <TuristriadaHeading width={120} height={120} />
-        <b className="-mt-5 font-semibold hidden sm:inline">
+        <b className="mt-5 font-semibold hidden sm:inline">
           Registro de empresa
         </b>
       </div>

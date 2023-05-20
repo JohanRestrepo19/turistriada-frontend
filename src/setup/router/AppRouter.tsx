@@ -4,6 +4,7 @@ import { UserLayout } from '@/layouts/user'
 import { Home } from '@/pages/home'
 import { Login } from '@/pages/login'
 import { Register, RegisterCustomer, RegisterUser } from '@/pages/register'
+import { PublishPlace } from '@/pages/places'
 
 export const AppRouter = () => {
   return (
@@ -19,6 +20,7 @@ export const AppRouter = () => {
         <Route element={<UserLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/places" element={<h1>places</h1>} />
+          <Route path="/places/new-place" element={<PublishPlace />} />
           <Route path="/categories" element={<h1>categories</h1>} />
         </Route>
       </Routes>
