@@ -48,7 +48,6 @@ export const PublishPlaceForm = () => {
           error={errors.aboutExperience?.message}
         />
         {/* Fotos */}
-        {/* TODO: Cambiar estilos para la subida de archivos */}
         <Input
           type="file"
           className="col-span-2 "
