@@ -6,6 +6,8 @@ export type RequestStatus = 'pending' | 'fulfilled' | 'rejected'
 
 export type UserRole = 'user' | 'customer' | 'admin' | null
 
+export type City = 'pereira' | 'dosquebradas' | 'santa rosa'
+
 export type Category =
   | 'comida'
   | 'hospedaje'

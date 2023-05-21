@@ -1,6 +1,15 @@
 import { Button, FileInput, Input, TextArea } from '@/common/components'
 import { useForm } from 'react-hook-form'
 import { PublishPlace, publishPlaceResolver } from '../validations/PublishPlace'
+import { Select } from '@/common/components/forms/Select'
+import { Category, City } from '@/common/types'
+
+const cities: City[] = ['pereira', 'dosquebradas', 'santa rosa']
+const categories: Category[] = [
+  'comida',
+  'hospedaje',
+  'instituciones culturales'
+]
 
 export const PublishPlaceForm = () => {
   const {
@@ -21,17 +30,31 @@ export const PublishPlaceForm = () => {
         onSubmit={handleSubmit(handleSubmitForm)}
       >
         {/* Ciudad */}
-        <Input
+        <Select
           title="Ciudad"
           {...register('city')}
           error={errors.city?.message}
-        />
+        >
+          {cities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+        </Select>
+
         {/* Categoría */}
-        <Input
+        <Select
           title="Categoría"
           {...register('category')}
           error={errors.category?.message}
-        />
+        >
+          {categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </Select>
+
         {/* Nombre del sitio */}
         <Input
           title="Nombre del sitio que visitaste"
@@ -39,6 +62,7 @@ export const PublishPlaceForm = () => {
           {...register('placeName')}
           error={errors.placeName?.message}
         />
+
         {/* Mas sobre el sitio */}
         <TextArea
           title="Cuentanos mas sobre tu experiencia"
@@ -46,6 +70,7 @@ export const PublishPlaceForm = () => {
           {...register('aboutExperience')}
           error={errors.aboutExperience?.message}
         />
+
         {/* Fotos */}
         <FileInput
           title="Subir imagenes"
