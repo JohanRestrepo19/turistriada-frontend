@@ -8,14 +8,14 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ className, error, title, ...props }, ref) => {
     const containerStyles = classNames({
-      'form-control': true,
+      'form-control text-form-text': true,
       [`${className}`]: className
     })
 
     return (
       <div className={containerStyles}>
         <label className="label">
-          <span className="text-form-text font-semibold">{title}</span>
+          <span className="font-semibold">{title}</span>
         </label>
         <textarea
           className="textarea textarea-bordered h-24 text-form-text"

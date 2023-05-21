@@ -1,11 +1,8 @@
 // TODO: Improve interfaces respect to data model.
-
 type ModelId = string
 
 export type RequestStatus = 'pending' | 'fulfilled' | 'rejected'
-
 export type UserRole = 'user' | 'customer' | 'admin' | null
-
 export type City = 'pereira' | 'dosquebradas' | 'santa rosa'
 
 export type Category =
@@ -38,12 +35,13 @@ export interface Activity {
   price: number
 }
 
+//TODO: Add city field to this model
 export interface Place {
   _id: ModelId
   name: string
   category: Category //TODO: Update category mockarro schema
   description: string
-  imgUrl?: string
+  imgUrl?: string //TODO: Change to string array
   location: string
   activities?: Activity[]
   reviews?: Review[]
