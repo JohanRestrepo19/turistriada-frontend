@@ -1,4 +1,4 @@
-import { Button, FileInput, Input } from '@/common/components'
+import { Button, FileInput, Input, TextArea } from '@/common/components'
 import { useForm } from 'react-hook-form'
 import { PublishPlace, publishPlaceResolver } from '../validations/PublishPlace'
 
@@ -40,9 +40,8 @@ export const PublishPlaceForm = () => {
           error={errors.placeName?.message}
         />
         {/* Mas sobre el sitio */}
-        <Input
-          title="Cuentanos un poco más sobre tu experiencia"
-          type="text"
+        <TextArea
+          title="Cuentanos mas sobre tu experiencia"
           className="col-span-2 w-full"
           {...register('aboutExperience')}
           error={errors.aboutExperience?.message}
