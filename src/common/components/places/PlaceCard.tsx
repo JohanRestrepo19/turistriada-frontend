@@ -1,6 +1,9 @@
-import type { Place } from '@/common/types'
-import { Avatar, Button } from '../'
 import { useNavigate } from 'react-router-dom'
+import { Avatar, Button } from '../'
+
+import type { Place } from '@/common/types'
+import { useAppDispatch } from '@/common/hooks'
+import { setPlace } from '@/store/slices/placesSlice'
 
 interface PlaceCardProps {
   place: Place
@@ -8,8 +11,10 @@ interface PlaceCardProps {
 
 export const PlaceCard = ({ place }: PlaceCardProps) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const handleClickDetails = () => {
+    dispatch(setPlace(place))
     navigate(`/places/${place._id}`)
   }
 
