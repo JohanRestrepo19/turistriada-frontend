@@ -5,6 +5,7 @@ import { Home } from '@/pages/home'
 import { Login } from '@/pages/login'
 import { Register, RegisterCustomer, RegisterUser } from '@/pages/register'
 import { PublishPlace } from '@/pages/places'
+import { UserProfile } from '@/pages/users'
 
 export const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ export const AppRouter = () => {
             element={<h1>Show place details</h1>}
           />
           <Route path="/categories" element={<h1>categories</h1>} />
+          <Route path="/users/:userId" element={<UserProfile />} />
         </Route>
       </Routes>
     </>

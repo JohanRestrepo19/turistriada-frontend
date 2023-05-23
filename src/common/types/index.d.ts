@@ -20,7 +20,7 @@ export interface User {
   lastName: string
   username: string
   role: UserRole
-  profileImgUrl: string
+  profileImgUrl?: string
   documentNumber: string | number
   email: string
 }
