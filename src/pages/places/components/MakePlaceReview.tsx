@@ -1,10 +1,33 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { Button, Rating, TextArea } from '@/common/components'
+import { MakeReview, makeReviewResolver } from '../validations/MakeReview'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 export const MakePlaceReview = () => {
+  const [rate, setRate] = useState<number>(5)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<MakeReview>({
+    resolver: makeReviewResolver
+  })
+
+  const handleSubmitReview = (data: MakeReview) => {
+    console.log('Datos para enviar en el formulario: ', { ...data, rate })
+  }
+
+  const handleChageRate = (value: number) => {
+    setRate(value)
+  }
+
   return (
-    <div className="card bg-white h-[300px] shadow-xl">
+    <form
+      className="card bg-white h-[300px] shadow-xl overflow-hidden"
+      onSubmit={handleSubmit(handleSubmitReview)}
+    >
       <div className="card-body">
         <div className="card-title text-primary mb-2 flex justify-between">
           <div>
@@ -13,10 +36,15 @@ export const MakePlaceReview = () => {
               Deja tu comentario!
             </span>
           </div>
-          <Rating />
+          <Rating onChangeRate={handleChageRate} />
         </div>
-        <form className="flex flex-col gap-2">
-          <TextArea title="Cómo fue tu experiencia?" className="text-primary" />
+        <div className="flex flex-col gap-2">
+          <TextArea
+            title="Cómo fue tu experiencia?"
+            className="text-primary"
+            {...register('comment')}
+            error={errors.comment?.message}
+          />
           <Button
             styleType="primary"
             rounded
@@ -25,8 +53,8 @@ export const MakePlaceReview = () => {
           >
             Publicar
           </Button>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   )
 }

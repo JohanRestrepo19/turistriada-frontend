@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export const Rating = () => {
-  const [, setRate] = useState<number>(5)
+interface RatingProps {
+  onChangeRate: (value: number) => void
+}
+
+export const Rating = ({ onChangeRate }: RatingProps) => {
+  const [rate, setRate] = useState<number>(5)
 
   const handleClickStar = (value: number) => {
     setRate(value)
   }
+
+  useEffect(() => {
+    onChangeRate(rate)
+  }, [rate, onChangeRate])
 
   return (
     <div className="rating">
