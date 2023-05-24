@@ -54,8 +54,15 @@ export const LastestPostsCard = () => {
       <h2 className="text-2xl my-4 text-primary font-bold text-center">
         Tus últimas publicaciones
       </h2>
-      {activeTab === 1 && <UserPostsGrid />}
-      {activeTab === 2 && places.map(place => (<UserPostsList placeList={place} key={place._id} />))}
+      {activeTab === 1 &&
+        places.map(place => (
+          <UserPostsGrid placeList={place} key={place._id} />
+        ))}
+
+      {activeTab === 2 &&
+        places.map(place => (
+          <UserPostsList placeList={place} key={place._id} />
+        ))}
     </>
   )
 }
