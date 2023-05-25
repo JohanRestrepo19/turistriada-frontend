@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { recommendationsSlice } from './slices/recommendationSlice'
+import { placesSlice } from './slices/placesSlice'
 
 export const store = configureStore({
   reducer: {
-    recommendations: recommendationsSlice.reducer
+    recommendations: recommendationsSlice.reducer,
+    places: placesSlice.reducer
   }
 })
 
