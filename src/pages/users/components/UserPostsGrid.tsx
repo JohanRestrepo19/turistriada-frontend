@@ -11,7 +11,7 @@ export const UserPostsGrid = ({ placeList }: UserPostsGridProps) => {
         <h2 className="text-base font-semibold">{placeList.name}</h2>
       </div>
       <figure>
-        <img className="" src={placeList.imgUrl} alt="Places" />
+        <img className="w-full h-36" src={placeList.imgUrl} alt="Places" />
       </figure>
     </div>
   )

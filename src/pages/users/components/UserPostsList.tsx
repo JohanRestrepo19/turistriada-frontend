@@ -28,7 +28,7 @@ export const UserPostsList = ({ placeList }: UserPostsListProps) => {
         </div>
       </div>
       <figure className="pt-6">
-        <img src={placeList.imgUrl} alt="place" className="rounded-sm" />
+        <img src={placeList.imgUrl} alt="place" className="rounded-sm w-full h-60" />
       </figure>
       <div className="card-body text-justify text-sm">
         <div className='flex items-center'>
