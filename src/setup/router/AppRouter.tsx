@@ -5,6 +5,8 @@ import { Home } from '@/pages/home'
 import { Login } from '@/pages/login'
 import { Register, RegisterCustomer, RegisterUser } from '@/pages/register'
 import { PublishPlace } from '@/pages/places'
+import { UserProfile } from '@/pages/users'
+import { CustomerLayout } from '@/layouts/customer'
 
 export const AppRouter = () => {
   return (
@@ -26,6 +28,23 @@ export const AppRouter = () => {
             element={<h1>Show place details</h1>}
           />
           <Route path="/categories" element={<h1>categories</h1>} />
+          <Route path="/users/:userId" element={<UserProfile />} />
+        </Route>
+
+        <Route element={<CustomerLayout />}>
+          <Route path="/customers" element={<h1>Customer Home</h1>} />
+          <Route
+            path="/customers/:customerId"
+            element={<h1>Customer Profile</h1>}
+          />
+          <Route
+            path="/customers/promos/new-promo"
+            element={<h1>Promos</h1>}
+          />
+          <Route
+            path="/customers/promos/new-service"
+            element={<h1>Services - Products</h1>}
+          />
         </Route>
       </Routes>
     </>
