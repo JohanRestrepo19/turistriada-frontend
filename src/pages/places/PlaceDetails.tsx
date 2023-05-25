@@ -3,9 +3,11 @@ import { PlaceImageSlider } from './components/PlaceImageSlider'
 import { selectPlace } from '@/store/slices/placesSlice'
 import { PlaceDescription } from './components/PlaceDescription'
 import { MakePlaceReview } from './components/MakePlaceReview'
+import { Place } from '@/common/types'
 
 export const PlaceDetails = () => {
-  const place = useAppSelector(selectPlace)
+  //TODO: Verify if there is a selectPlace if not then request to firebase
+  const place = useAppSelector(selectPlace) as Place
 
   return (
     <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-4 py-8 w-10/12">
@@ -14,7 +16,7 @@ export const PlaceDetails = () => {
       {/* 2. Images slider */}
       <PlaceImageSlider imgSrc={place?.imgUrl || ''} />
       {/* 3. Description panel */}
-      <PlaceDescription />
+      <PlaceDescription place={place} />
       {/* 4. Make a Review */}
       <MakePlaceReview />
 
