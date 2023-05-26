@@ -1,7 +1,11 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Avatar, TuristriadaHeading } from '@/common/components'
 
 export const UserNavbar = () => {
+  const navigate = useNavigate()
+  const handleClickLogo = () => {
+    navigate('/')
+  }
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-primary' : ''
 
@@ -9,7 +13,7 @@ export const UserNavbar = () => {
     <>
       <div className="w-full bg-navbar/80 px-2">
         <div className="flex flex-col lg:flex-row justify-between items-center text-white font-semibold py-2">
-          <TuristriadaHeading width={76} />
+          <TuristriadaHeading width={76} onClick={handleClickLogo} />
           <nav className="grow flex flex-row flex-wrap justify-evenly md:justify-end items-center gap-x-4">
             <NavLink to="/" className={handleActiveClass}>
               Inicio

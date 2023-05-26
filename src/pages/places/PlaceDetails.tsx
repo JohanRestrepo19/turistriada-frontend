@@ -4,6 +4,7 @@ import { selectPlace } from '@/store/slices/placesSlice'
 import { PlaceDescription } from './components/PlaceDescription'
 import { MakePlaceReview } from './components/MakePlaceReview'
 import { Place } from '@/common/types'
+import { PlaceReviews } from './components/PlaceReviews'
 
 export const PlaceDetails = () => {
   //TODO: Verify if there is a selectPlace if not then request to firebase
@@ -21,6 +22,7 @@ export const PlaceDetails = () => {
       <MakePlaceReview />
 
       {/* 5. Show reviews. */}
+      <PlaceReviews reviews={place.reviews || []} />
     </div>
   )
 }

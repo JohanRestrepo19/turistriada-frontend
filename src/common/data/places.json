@@ -1,7 +1,7 @@
 [
   {
     "_id": "bbf26fa0-5d51-4f9f-972e-43d5c9672258",
-    "name": "Stoltenberg Inc",
+    "name": "Johan Inc",
     "description": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
     "category": "instituciones culturales",
     "location": "4th Floor",
@@ -35,7 +35,19 @@
     ],
     "reviews": [
       {
-        "_id": "f4736e35-bd8d-46ef-87e6-bb1f06221cb5",
+        "_id": "f4736e35-bd8d-46ef-87e6-bb1f06221cb6",
+        "authorId": "645198a4-7076-433c-9a26-107f4fd16a74",
+        "comment": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+        "rating": 4
+      },
+      {
+        "_id": "f4736e35-bd8d-46ef-87e6-bb1f06221cb7",
+        "authorId": "645198a4-7076-433c-9a26-107f4fd16a74",
+        "comment": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+        "rating": 4
+      },
+      {
+        "_id": "f4736e35-bd8d-46ef-87e6-bb1f06221cb8",
         "authorId": "645198a4-7076-433c-9a26-107f4fd16a74",
         "comment": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
         "rating": 4
