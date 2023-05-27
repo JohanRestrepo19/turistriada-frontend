@@ -2,8 +2,10 @@
 type ModelId = string
 
 export type RequestStatus = 'pending' | 'fulfilled' | 'rejected'
+
 export type UserRole = 'user' | 'customer' | 'admin' | null
 export type City = 'pereira' | 'dosquebradas' | 'santa rosa'
+export type DocumentType = 'CC' | 'NIT'
 
 export type Category =
   | 'comida'
@@ -15,9 +17,10 @@ export interface User {
   _id: ModelId
   name: string
   lastName: string
-  username: string
+  username?: string
   role: UserRole
   profileImgUrl?: string
+  documentType: DocumentType
   documentNumber: string | number
   email: string
 }

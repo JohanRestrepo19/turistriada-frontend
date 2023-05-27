@@ -1,7 +1,14 @@
 import { InferType, object, ref, string } from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { DocumentType } from '@/common/types'
 
 const registerUserSchema = object({
+  documentType: string()
+    .oneOf<DocumentType>(
+      ['CC', 'NIT'],
+      'El tipo de documento debe ser: ${values}'
+    )
+    .required(),
   documentNumber: string()
     .min(10, 'Tu documento debe tener 10 digitos')
     .required('Necesita un documento!'),

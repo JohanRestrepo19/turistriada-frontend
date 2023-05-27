@@ -1,10 +1,11 @@
-import { User } from "@/common/types"
-import { PersonalInformationCard } from "./components/PersonalInformationCard"
-import { LastestPostsCard } from "./components/LastestPostsCard"
+import { User } from '@/common/types'
+import { PersonalInformationCard } from './components/PersonalInformationCard'
+import { LastestPostsCard } from './components/LastestPostsCard'
 
 export const UserProfile = () => {
-    // TODO: Props que van a llegar mas adelante a este componente
+  // TODO: Props que van a llegar mas adelante a este componente
   const user: User = {
+    documentType: 'CC',
     documentNumber: '100452621',
     username: 'Brandddd',
     name: 'Brandon',

@@ -3,7 +3,7 @@ import { forwardRef, ReactNode, SelectHTMLAttributes } from 'react'
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   title: string
   error?: string
-  children: ReactNode[]
+  children: ReactNode | ReactNode[]
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(

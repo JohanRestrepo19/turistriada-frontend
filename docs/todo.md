@@ -18,7 +18,7 @@
 - [x] Input
 - [x] Footer
 - [x] UserNavbar
-- [ ] CustomerNavbar
+- [x] CustomerNavbar
 - [ ] Modal
 - [ ] Pagination
 - [ ] Filter

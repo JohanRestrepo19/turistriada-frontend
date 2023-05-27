@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { useForm } from 'react-hook-form'
+import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { RegisterUser, registerUserResolver } from '../validations/registerUser'
+import { Select } from '@/common/components/forms/Select'
+import { registerUser } from '@/services/firebase/register'
 
 export const RegisterUserForm = () => {
   const {
@@ -11,9 +13,12 @@ export const RegisterUserForm = () => {
   } = useForm<RegisterUser>({
     resolver: registerUserResolver
   })
-  const handleSubmitForm = (data: RegisterUser) => {
-    console.log('FieldValues: ', data)
+
+  const handleSubmitForm = async (data: RegisterUser) => {
+    const { email, password } = data
+    registerUser({ email, password })
   }
+
   return (
     <>
       <div className="flex flex-wrap justify-between items-center gap-x-4 ">
@@ -26,18 +31,28 @@ export const RegisterUserForm = () => {
         className="grid grid-cols-1 sm:grid-cols-2 gap-8"
         onSubmit={handleSubmit(handleSubmitForm)}
       >
-        <Input title="Tipo documento" />
+        {/* <Input title="Tipo documento" /> */}
+        <Select
+          title="Tipo documento"
+          {...register('documentType')}
+          error={errors.documentType?.message}
+        >
+          <option value="CC">Cedula de ciudadania</option>
+        </Select>
+
         <Input
           type="number"
           title="Numero documento"
           {...register('documentNumber')}
           error={errors.documentNumber?.message}
         />
+
         <Input
           title="Primer nombre"
           {...register('firstName')}
           error={errors.firstName?.message}
         />
+
         <Input
           title="Apellido"
           {...register('lastName')}
@@ -49,23 +64,27 @@ export const RegisterUserForm = () => {
           {...register('email')}
           error={errors.email?.message}
         />
+
         <Input
           title="Nombre usuario"
           {...register('username')}
           error={errors.username?.message}
         />
+
         <Input
           type="password"
           title="Contraseña"
           {...register('password')}
           error={errors.password?.message}
         />
+
         <Input
           type="password"
           title="Confirmar contraseña"
           {...register('confirmPassword')}
           error={errors.confirmPassword?.message}
         />
+
         <div className="sm:col-span-2 w-full flex flex-col items-center gap-y-4">
           <Button
             type="submit"
