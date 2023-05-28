@@ -4,6 +4,7 @@ import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { RegisterUser, registerUserResolver } from '../validations/registerUser'
 import { Select } from '@/common/components/forms/Select'
 import { registerUser } from '@/services/firebase/register'
+import { toast } from 'react-toastify'
 
 export const RegisterUserForm = () => {
   const {
@@ -16,7 +17,9 @@ export const RegisterUserForm = () => {
 
   const handleSubmitForm = async (data: RegisterUser) => {
     const { email, password } = data
-    registerUser({ email, password })
+    const response = await registerUser({ email, password })
+    console.log('Error: ', response.errorMsg)
+    if (response.error) toast.error(response.errorMsg)
   }
 
   return (
