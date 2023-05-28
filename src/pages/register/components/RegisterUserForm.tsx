@@ -18,8 +18,7 @@ export const RegisterUserForm = () => {
   const handleSubmitForm = async (data: RegisterUser) => {
     const { email, password } = data
     const response = await registerUser({ email, password })
-    console.log('Error: ', response.errorMsg)
-    if (response.error) toast.error(response.errorMsg)
+    if (response.hasError) toast.error(response.errorMsg)
   }
 
   return (

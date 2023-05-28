@@ -3,11 +3,11 @@ import { FirebaseAuth } from '@/setup/firebase'
 import { User } from '@/common/types'
 
 //TODO: Make Firestore UserCreation Function.
-/* const registerUserFirestore = async () => {} */
+/* const createUserFirestore = async () => {} */
 
 interface RegisterResponse {
   user?: User
-  error: boolean
+  hasError: boolean
   errorMsg?: string
 }
 export const registerUser = async (userInfo: {
@@ -21,11 +21,19 @@ export const registerUser = async (userInfo: {
       userInfo.password
     )
     console.log('userCredential: ', userCredential.user)
-    return { error: false }
+    return { hasError: false }
   } catch (error) {
     const authError = error as AuthError
+    console.log('Error de firebase', { ...authError })
+
+    if (authError.code === 'auth/email-already-in-use')
+      return {
+        hasError: true,
+        errorMsg: 'El correo electronico ya está en uso'
+      }
+
     return {
-      error: true,
+      hasError: true,
       errorMsg: authError.message
     }
   }
