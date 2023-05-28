@@ -7,10 +7,10 @@ export const NotificationsContainer = () => {
       autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}
-      closeOnClick
+      closeOnClick={false}
       rtl={false}
-      pauseOnFocusLoss
-      draggable
+      pauseOnFocusLoss={false}
+      draggable={false}
       pauseOnHover
       theme="light"
     />
