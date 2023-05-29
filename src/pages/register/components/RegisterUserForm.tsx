@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { Select } from '@/common/components/forms/Select'
-import { registerUser } from '@/services/firebase/register'
 import { RegisterUser, registerUserResolver } from '../validations/registerUser'
+import { useAppDispatch } from '@/common/hooks'
+import { registerUser } from '@/store/slices/auth'
 
 export const RegisterUserForm = () => {
+  const dispatch = useAppDispatch()
+
   const {
     register,
     handleSubmit,
@@ -16,8 +18,7 @@ export const RegisterUserForm = () => {
   })
 
   const handleSubmitForm = async (data: RegisterUser) => {
-    const response = await registerUser({ ...data })
-    if (response.hasError) toast.error(response.errorMsg)
+    dispatch(registerUser({ ...data }))
   }
 
   return (

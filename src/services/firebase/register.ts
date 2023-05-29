@@ -9,7 +9,7 @@ interface RegisterResponse {
   errorMsg?: string
 }
 
-interface RegisterUserFirestore {
+export interface RegisterUserFirestore {
   documentType: DocumentType
   documentNumber: string
   firstName: string
@@ -19,18 +19,33 @@ interface RegisterUserFirestore {
   password: string
 }
 
-//TODO: Make Firestore UserCreation Function.
+const makeUserResposne = (
+  userInfo: RegisterUserFirestore & { id: string }
+): User => {
+  return {
+    _id: userInfo.id,
+    name: userInfo.firstName,
+    lastName: userInfo.lastName,
+    username: userInfo.username,
+    role: 'user',
+    profileImgUrl: '',
+    documentType: userInfo.documentType,
+    documentNumber: userInfo.documentNumber,
+    email: userInfo.email
+  }
+}
+
 const createUserInFirestore = async (
   userInfo: RegisterUserFirestore & { id: string }
 ) => {
   try {
     const { id, ...userFields } = userInfo
     await setDoc(doc(FirestoreDB, 'users', id), { ...userFields, role: 'user' })
+    return makeUserResposne(userInfo)
   } catch (error) {
     const firestoreError = error as FirestoreError
     throw new Error(firestoreError.message)
   }
-  console.log(userInfo)
 }
 
 export const registerUser = async (
@@ -42,12 +57,13 @@ export const registerUser = async (
       userInfo.email,
       userInfo.password
     )
-    console.log('userCredential: ', userCredential.user.uid)
-    // En este punto ya se sabe que el correo está disponible.
-    // con lo cual ya se puede guardar la información extra en firestore
-    await createUserInFirestore({ id: userCredential.user.uid, ...userInfo })
 
-    return { hasError: false }
+    const user = await createUserInFirestore({
+      id: userCredential.user.uid,
+      ...userInfo
+    })
+
+    return { hasError: false, user }
   } catch (error) {
     const authError = error as AuthError
 

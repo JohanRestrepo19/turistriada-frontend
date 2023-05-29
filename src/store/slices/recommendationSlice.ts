@@ -12,7 +12,7 @@ export const fetchRecommendedPlaces = createAsyncThunk<Place[] | undefined>(
     try {
       return await getRecommendations()
     } catch (error) {
-      thunkApi.rejectWithValue(error)
+      return thunkApi.rejectWithValue(error)
     }
   }
 )
@@ -25,7 +25,7 @@ interface RecommendationsState {
 
 const initialState: RecommendationsState = {
   places: [],
-  placesStatus: 'pending',
+  placesStatus: 'idle',
   filteredPlaces: []
 }
 
