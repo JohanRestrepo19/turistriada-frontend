@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
-import { Input, Button, TuristriadaHeading } from '@/common/components'
+import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
+import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { useAppDispatch, useAppSelector } from '@/common/hooks'
-import { login, selectLoadingAuth } from '@/store/slices/authSlice'
+import { login, selectAuthLoading } from '@/store/slices/authSlice'
 
 interface LoginFormFields {
   email: string
@@ -12,17 +13,26 @@ interface LoginFormFields {
 
 export const LoginForm = () => {
   const dispatch = useAppDispatch()
-  const loginStatus = useAppSelector(selectLoadingAuth)
+  const loginStatus = useAppSelector(selectAuthLoading)
+
   const { register, handleSubmit } = useForm<LoginFormFields>()
+
   const handleSubmitLogin = (data: LoginFormFields) => {
     dispatch(login(data))
+      .unwrap()
+      .then(() => {
+        console.log('Login exitoso')
+      })
+      .catch(rejectedValue => {
+        toast.error(rejectedValue)
+      })
   }
 
   return (
     <>
       <TuristriadaHeading />
       <form
-        className="flex flex-col  gap-y-8"
+        className="flex flex-col gap-y-8"
         onSubmit={handleSubmit(handleSubmitLogin)}
       >
         <Input title="email" icon={faUser} {...register('email')} />

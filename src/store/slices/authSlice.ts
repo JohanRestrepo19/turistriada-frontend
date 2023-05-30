@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { toast } from 'react-toastify'
 import {
   loginToFirebase,
   registerUser as registerUserService
@@ -65,7 +64,6 @@ export const authSlice = createSlice({
         if (state.loading === 'pending') {
           state.loading = 'idle'
           state.error = action.payload as string
-          toast.error(state.error)
         }
       })
     builder
@@ -83,14 +81,13 @@ export const authSlice = createSlice({
         if (state.loading === 'pending') {
           state.loading = 'idle'
           state.error = action.payload as string
-          toast.error(state.error)
         }
       })
   }
 })
 
 //Selectors.
-export const selectLoadingAuth = (state: RootState) => state.auth.loading
-export const selectErrorAuth = (state: RootState) => state.auth.error
+export const selectAuthLoading = (state: RootState) => state.auth.loading
+export const selectAuthError = (state: RootState) => state.auth.error
 
 //Actions.

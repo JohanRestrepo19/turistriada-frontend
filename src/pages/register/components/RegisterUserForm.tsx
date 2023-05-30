@@ -1,13 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { Select } from '@/common/components/forms/Select'
 import { RegisterUser, registerUserResolver } from '../validations/registerUser'
-import { useAppDispatch } from '@/common/hooks'
-import { registerUser } from '@/store/slices/authSlice'
+import { useAppDispatch, useAppSelector } from '@/common/hooks'
+import { registerUser, selectAuthLoading } from '@/store/slices/authSlice'
 
 export const RegisterUserForm = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const registerStatus = useAppSelector(selectAuthLoading)
 
   const {
     register,
@@ -17,8 +20,15 @@ export const RegisterUserForm = () => {
     resolver: registerUserResolver
   })
 
-  const handleSubmitForm = async (data: RegisterUser) => {
+  const handleSubmitForm = (data: RegisterUser) => {
     dispatch(registerUser({ ...data }))
+      .unwrap()
+      .then(() => {
+        navigate('/login')
+      })
+      .catch(rejectedValue => {
+        toast.error(rejectedValue)
+      })
   }
 
   return (
@@ -92,6 +102,7 @@ export const RegisterUserForm = () => {
             type="submit"
             styleType="primary"
             className="col-span-2 w-1/2"
+            disabled={registerStatus === 'pending'}
           >
             INGRESAR
           </Button>
