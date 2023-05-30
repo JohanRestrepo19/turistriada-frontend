@@ -3,12 +3,6 @@ import { doc, setDoc, FirestoreError } from 'firebase/firestore'
 import { FirebaseAuth, FirestoreDB } from '@/setup/firebase'
 import { User, DocumentType } from '@/common/types'
 
-interface RegisterResponse {
-  user?: User
-  hasError: boolean
-  errorMsg?: string
-}
-
 export interface RegisterUserFirestore {
   documentType: DocumentType
   documentNumber: string
@@ -17,6 +11,11 @@ export interface RegisterUserFirestore {
   email: string
   username: string
   password: string
+}
+
+interface RegisterResponse {
+  hasError: boolean
+  errorMsg?: string
 }
 
 const makeUserResposne = (
@@ -40,7 +39,11 @@ const createUserInFirestore = async (
 ) => {
   try {
     const { id, ...userFields } = userInfo
-    await setDoc(doc(FirestoreDB, 'users', id), { ...userFields, role: 'user' })
+    await setDoc(doc(FirestoreDB, 'users', id), {
+      ...userFields,
+      role: 'user',
+      profileImgUrl: ''
+    })
     return makeUserResposne(userInfo)
   } catch (error) {
     const firestoreError = error as FirestoreError
@@ -58,12 +61,12 @@ export const registerUser = async (
       userInfo.password
     )
 
-    const user = await createUserInFirestore({
+    await createUserInFirestore({
       id: userCredential.user.uid,
       ...userInfo
     })
 
-    return { hasError: false, user }
+    return { hasError: false }
   } catch (error) {
     const authError = error as AuthError
 

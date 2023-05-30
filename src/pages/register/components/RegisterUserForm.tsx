@@ -4,7 +4,7 @@ import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { Select } from '@/common/components/forms/Select'
 import { RegisterUser, registerUserResolver } from '../validations/registerUser'
 import { useAppDispatch } from '@/common/hooks'
-import { registerUser } from '@/store/slices/auth'
+import { registerUser } from '@/store/slices/authSlice'
 
 export const RegisterUserForm = () => {
   const dispatch = useAppDispatch()

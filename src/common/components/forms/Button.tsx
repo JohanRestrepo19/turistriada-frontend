@@ -25,7 +25,7 @@ export const Button = ({
     btn: true,
     'btn-primary': styleType === 'primary',
     'btn-accent': styleType === 'secondary',
-    disabled: props.disabled,
+    'btn-disabled': props.disabled,
     'rounded rounded-full': rounded
   })
 
