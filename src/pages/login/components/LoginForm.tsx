@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
@@ -13,6 +13,7 @@ interface LoginFormFields {
 
 export const LoginForm = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const loginStatus = useAppSelector(selectAuthLoading)
 
   const { register, handleSubmit } = useForm<LoginFormFields>()
@@ -20,8 +21,9 @@ export const LoginForm = () => {
   const handleSubmitLogin = (data: LoginFormFields) => {
     dispatch(login(data))
       .unwrap()
-      .then(() => {
-        console.log('Login exitoso')
+      .then(authUser => {
+        if (authUser?.role === 'user') navigate('/')
+        if (authUser?.role === 'customer') navigate('/customers')
       })
       .catch(rejectedValue => {
         toast.error(rejectedValue)

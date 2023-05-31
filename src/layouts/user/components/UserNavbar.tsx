@@ -1,11 +1,26 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Avatar, TuristriadaHeading } from '@/common/components'
+import { useAppDispatch } from '@/common/hooks'
+import { logout } from '@/store/slices/authSlice'
+import { toast } from 'react-toastify'
 
 export const UserNavbar = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
   const handleClickLogo = () => {
     navigate('/')
   }
+
+  const handleClickLogout = () => {
+    console.log('Fui presionado')
+    dispatch(logout())
+      .unwrap()
+      .catch(rejectedValue => {
+        toast.error(rejectedValue)
+      })
+  }
+
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-primary' : ''
 
@@ -27,7 +42,7 @@ export const UserNavbar = () => {
             <NavLink to="/categories" className={handleActiveClass}>
               Categorias
             </NavLink>
-            <button>Logout</button>
+            <button onClick={handleClickLogout}>Logout</button>
             <Avatar className="hidden lg:block" />
           </nav>
         </div>

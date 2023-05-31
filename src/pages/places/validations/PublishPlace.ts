@@ -17,11 +17,10 @@ const publishPlaceSchema = object<PublishPlace>({
   category: string().required('Por favor, ingresa una categoría.'),
   placeName: string().required('Por favor, ingresa el nombre del sitio.'),
   aboutExperience: string().required('Este campo es obligatorio.'),
-  image: mixed().test(
-    "required",
-   "Por favor selecciona un archivo", 
-  (files: any) => files?.length > 0) //HACK: Change any type to its repective type
+  image: mixed().test('required', 'Por favor selecciona un archivo', files => {
+    const verifiedFiles = files as FileList
+    return verifiedFiles?.length > 0
+  })
 })
-
 
 export const publishPlaceResolver = yupResolver(publishPlaceSchema)

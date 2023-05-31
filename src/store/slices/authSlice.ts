@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   loginToFirebase,
+  logoutFromFirebase,
   registerUser as registerUserService
 } from '@/services/firebase'
 import type { LoginFirebase, RegisterUserFirestore } from '@/services/firebase'
@@ -31,6 +32,16 @@ export const login = createAsyncThunk<
   return response.user
 })
 
+export const logout = createAsyncThunk<void, void, { state: RootState }>(
+  'auth/logout',
+  async (_, thunkApi) => {
+    const { loading } = thunkApi.getState().auth
+    if (loading !== 'pending') return
+    const response = await logoutFromFirebase()
+    if (response.hasError) return thunkApi.rejectWithValue(response.errorMsg)
+  }
+)
+
 //State declaration.
 interface AuthState {
   user: User | null
@@ -50,6 +61,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
+    //Register
     builder
       .addCase(registerUser.pending, state => {
         if (state.loading === 'idle') state.loading = 'pending'
@@ -66,6 +78,7 @@ export const authSlice = createSlice({
           state.error = action.payload as string
         }
       })
+    //Login
     builder
       .addCase(login.pending, state => {
         if (state.loading === 'idle') state.loading = 'pending'
@@ -78,6 +91,24 @@ export const authSlice = createSlice({
         }
       })
       .addCase(login.rejected, (state, action) => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle'
+          state.error = action.payload as string
+        }
+      })
+    //Logout
+    builder
+      .addCase(logout.pending, state => {
+        if (state.loading === 'idle') state.loading = 'pending'
+      })
+      .addCase(logout.fulfilled, state => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle'
+          state.user = null
+          state.error = null
+        }
+      })
+      .addCase(logout.rejected, (state, action) => {
         if (state.loading === 'pending') {
           state.loading = 'idle'
           state.error = action.payload as string
