@@ -120,5 +120,6 @@ export const authSlice = createSlice({
 //Selectors.
 export const selectAuthLoading = (state: RootState) => state.auth.loading
 export const selectAuthError = (state: RootState) => state.auth.error
+export const selectAuthUser = (state: RootState) => state.auth.user
 
 //Actions.
