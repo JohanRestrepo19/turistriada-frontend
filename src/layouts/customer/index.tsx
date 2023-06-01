@@ -1,8 +1,16 @@
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { Footer } from '@/common/components/Footer'
 import { CustomerNavbar } from './components/CustomerNavbar'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
 
 export const CustomerLayout = () => {
+  const authUser = useAppSelector(selectAuthUser)
+
+  if (!authUser) return <Navigate to="/login" />
+
+  if (authUser.role === 'user') return <Navigate to="/" />
+
   return (
     <div className="min-h-screen flex flex-col">
       <CustomerNavbar />

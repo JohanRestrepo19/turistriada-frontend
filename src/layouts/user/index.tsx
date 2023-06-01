@@ -7,11 +7,10 @@ import { selectAuthUser } from '@/store/slices/authSlice'
 
 export const UserLayout = () => {
   const authUser = useAppSelector(selectAuthUser)
-  console.log('Auth user: ', authUser)
 
-  if (!authUser) {
-    return <Navigate to="/login" />
-  }
+  if (!authUser) return <Navigate to="/login" />
+
+  if (authUser.role === 'customer') return <Navigate to="/customers" />
 
   return (
     <div className="min-h-screen flex flex-col">
