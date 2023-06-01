@@ -1,5 +1,6 @@
-import { mixed, object, string } from 'yup'
+import { array, mixed, object, string } from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Activity } from '@/common/types'
 
 // const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 const FILE_SIZE = 1000000 * 5
@@ -11,6 +12,7 @@ export interface PublishPlace {
   location: string
   description: string
   image: FileList
+  activities?: Activity[]
 }
 
 //Custom validation functions.
@@ -33,6 +35,7 @@ const publishPlaceSchema = object<PublishPlace>({
   name: string().required('Por favor, ingresa el nombre del sitio.'),
   location: string().required('Por favor, ingresa la dirección'),
   description: string().required('Este campo es obligatorio.'),
+  activities: array().nullable(),
   image: mixed()
     .test('required', 'La imagen es requerida', checkIfThereIsFile)
     .test('fileSize', 'La imagen es muy grande', checkIfFilesAreTooBig)

@@ -24,8 +24,8 @@ export const PlaceField = ({ content, name, icon }: PlaceFieldProps) => {
         {typeof content === 'string'
           ? content
           : content &&
-            content.map(activity => (
-              <li key={activity._id} className="list-disc">
+            content.map((activity, index) => (
+              <li key={index} className="list-disc">
                 {activity.name}: {currencyFormater.format(activity.price)}
               </li>
             ))}

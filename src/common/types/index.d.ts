@@ -32,7 +32,6 @@ export interface Review {
 }
 
 export interface Activity {
-  _id: ModelId
   name: string
   price: number
 }
