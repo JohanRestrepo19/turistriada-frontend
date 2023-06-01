@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { PublishPlace, publishPlaceResolver } from '../validations/PublishPlace'
 import { Select } from '@/common/components/forms/Select'
 import { Category, City } from '@/common/types'
+import { createPlace } from '@/services/firebase'
+import { toast } from 'react-toastify'
 
 const cities: City[] = ['pereira', 'dosquebradas', 'santa rosa']
 const categories: Category[] = [
@@ -15,12 +17,20 @@ export const PublishPlaceForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<PublishPlace>({
+    /* reValidateMode: 'onSubmit', */
     resolver: publishPlaceResolver
   })
-  const handleSubmitForm = (data: PublishPlace) => {
+
+  const handleSubmitForm = async (data: PublishPlace) => {
     console.log('Place Object: ', data)
+    console.log('Imagen(es): ', data.image.item(0))
+    const response = await createPlace(data)
+    if (response.hasError) return toast.error(response.errorMsg)
+    toast.success('Lugar creado correctamente')
+    reset()
   }
 
   return (
@@ -59,16 +69,24 @@ export const PublishPlaceForm = () => {
         <Input
           title="Nombre del sitio que visitaste"
           className="col-span-2"
-          {...register('placeName')}
-          error={errors.placeName?.message}
+          {...register('name')}
+          error={errors.name?.message}
+        />
+
+        {/* Direccion */}
+        <Input
+          title="Dirección"
+          className="col-span-2"
+          {...register('location')}
+          error={errors.location?.message}
         />
 
         {/* Mas sobre el sitio */}
         <TextArea
           title="Cuentanos mas sobre tu experiencia"
           className="col-span-2 w-full"
-          {...register('aboutExperience')}
-          error={errors.aboutExperience?.message}
+          {...register('description')}
+          error={errors.description?.message}
         />
 
         {/* Fotos */}

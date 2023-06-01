@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { Footer } from '@/common/components/Footer'
-import { UserNavbar } from './components/UserNavbar'
-import { ToastContainer } from 'react-toastify'
-import { useAppSelector } from '@/common/hooks'
+import { NotificationsContainer } from '@/common/components'
 import { selectAuthUser } from '@/store/slices/authSlice'
+import { useAppSelector } from '@/common/hooks'
+import { UserNavbar } from './components/UserNavbar'
 
 export const UserLayout = () => {
   const authUser = useAppSelector(selectAuthUser)
@@ -15,7 +15,7 @@ export const UserLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <UserNavbar />
-      <ToastContainer />
+      <NotificationsContainer />
       <div className="grow container mx-auto bg-base-100 flex flex-col gap-4">
         <div className="flex-grow flex justify-center gap-y-4">
           <Outlet />

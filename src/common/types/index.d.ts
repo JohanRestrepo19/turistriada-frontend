@@ -37,16 +37,16 @@ export interface Activity {
   price: number
 }
 
-//TODO: Add city field to this model
 export interface Place {
   _id: ModelId
-  name: string
-  category: Category //TODO: Update category mockarro schema
-  description: string
-  imgUrl?: string //TODO: Change to string array
-  location: string
   activities?: Activity[]
-  reviews?: Review[]
-  createdByUserId: MoldeId
+  category: Category
+  city: City
   createdBy?: User
+  createdByUserId: MoldeId
+  description: string
+  imgUrl?: string
+  location: string
+  name: string
+  reviews?: Review[]
 }

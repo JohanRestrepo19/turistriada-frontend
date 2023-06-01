@@ -13,7 +13,6 @@ export const UserNavbar = () => {
   }
 
   const handleClickLogout = () => {
-    console.log('Fui presionado')
     dispatch(logout())
       .unwrap()
       .catch(rejectedValue => {
@@ -33,8 +32,8 @@ export const UserNavbar = () => {
             <NavLink to="/" className={handleActiveClass}>
               Inicio
             </NavLink>
-            <NavLink to="/promos" className={handleActiveClass}>
-              Promociones
+            <NavLink to="/places/new-place" className={handleActiveClass}>
+              Publica
             </NavLink>
             <NavLink to="/curiosities" className={handleActiveClass}>
               ¿Sabías qué?

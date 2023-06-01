@@ -19,7 +19,6 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
         </label>
         <input
           type="file"
-          multiple
           className="file-input file-input-bordered w-full"
           {...props}
           ref={ref}
