@@ -10,6 +10,7 @@ interface PlaceCardProps {
 }
 
 export const PlaceCard = ({ place }: PlaceCardProps) => {
+  //TODO: Fetch the user who created this place
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -26,10 +27,10 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
       <div className="card-body flex flex-col justify-evenly">
         {/* CardTitle */}
         <div className="card-title h-24 mb-4">
-          <Avatar imgSrc={place.createdBy?.profileImgUrl} />
+          <Avatar imgSrc={''} />
           <div className="ml-8">
             <p className="text-primary-text">{place.name}</p>
-            <p className="font-light">{place.createdBy?.username}</p>
+            <p className="font-light">{'Nombre de usuario'}</p>
           </div>
         </div>
 

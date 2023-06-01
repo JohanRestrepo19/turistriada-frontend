@@ -5,6 +5,10 @@ import { Select } from '@/common/components/forms/Select'
 import { createPlace } from '@/services/firebase'
 import { PublishPlace, publishPlaceResolver } from '../validations/PublishPlace'
 import type { Category, City } from '@/common/types'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
+
+const MAX_ACTIVITIES_FIELDS = 5
 
 const cities: City[] = ['pereira', 'dosquebradas', 'santa rosa']
 const categories: Category[] = [
@@ -14,6 +18,7 @@ const categories: Category[] = [
 ]
 
 export const PublishPlaceForm = () => {
+  const authUser = useAppSelector(selectAuthUser)
   const {
     register,
     handleSubmit,
@@ -30,11 +35,12 @@ export const PublishPlaceForm = () => {
   })
 
   const handleSubmitForm = async (data: PublishPlace) => {
-    console.log('Place Object: ', data)
-    console.log('Imagen(es): ', data.image.item(0))
-    // const response = await createPlace(data)
-    // if (response.hasError) return toast.error(response.errorMsg)
-    // toast.success('Lugar creado correctamente')
+    const response = await createPlace({
+      ...data,
+      createdByUserId: authUser?._id as string
+    })
+    if (response.hasError) return toast.error(response.errorMsg)
+    toast.success('Lugar creado correctamente')
     reset()
   }
 
@@ -131,7 +137,8 @@ export const PublishPlaceForm = () => {
           className="sm:col-span-2"
           type="button"
           onClick={() => {
-            if (fields.length < 5) append({ name: '', price: 0 })
+            if (fields.length < MAX_ACTIVITIES_FIELDS)
+              append({ name: '', price: 0 })
           }}
         >
           Añadir actividad

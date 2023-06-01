@@ -41,7 +41,7 @@ export interface Place {
   activities?: Activity[]
   category: Category
   city: City
-  createdBy?: User
+  createdAt: Date
   createdByUserId: MoldeId
   description: string
   imgUrl?: string

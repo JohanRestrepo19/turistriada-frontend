@@ -8,10 +8,12 @@ interface BaseResponse {
 }
 
 export const createPlace = async (
-  placeData: PublishPlace
+  placeData: PublishPlace & { createdByUserId: string }
 ): Promise<BaseResponse> => {
   try {
     //1. Tengo que crear almacenar la información del lugar
+
+    console.log('Datos a ser enviados a firestore: ', placeData)
 
     await addDoc(collection(FirestoreDB, 'places'), {
       city: placeData.city,
@@ -19,7 +21,10 @@ export const createPlace = async (
       name: placeData.name,
       description: placeData.description,
       imgUrl: '',
-      location: placeData.location
+      location: placeData.location,
+      activities: placeData.activities,
+      createdAt: new Date(),
+      createdByUserId: placeData.createdByUserId
     })
 
     return { hasError: false }
