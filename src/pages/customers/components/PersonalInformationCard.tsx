@@ -48,6 +48,10 @@ export const PersonalInformationCard = ({
           <p className="font-semibold mr-1">Dirección:</p>
           <p className="overflow-hidden line-clamp-3">{customer.address}</p>
         </div>
+        <div className="flex items-center">
+          <p className="font-semibold mr-1">Telefono:</p>
+          <p className="overflow-hidden line-clamp-3">{customer.phone}</p>
+        </div>
       </div>
       <div className="flex flex-col items-center justify-center px-10">
         <Button

@@ -1,5 +1,6 @@
 import { Customer } from "@/common/types"
 import { PersonalInformationCard } from "./components/PersonalInformationCard"
+import { CustomerPromotions } from "./components/CustomerPromotions"
 
 
 export const CustomerProfile = () => {
@@ -23,8 +24,8 @@ export const CustomerProfile = () => {
         <div className="mx-4">
           <PersonalInformationCard customer={customer} />
         </div>
-        <div className="mx-4 w-96">
-          {/* <LastestPostsCard /> */}
+        <div className="mx-4 w-auto">
+          <CustomerPromotions key={'promotions'}/>
         </div>
       </div>
     </>
