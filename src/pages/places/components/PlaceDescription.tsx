@@ -14,15 +14,17 @@ interface PlaceDescriptionProps {
 export const PlaceDescription = ({ place }: PlaceDescriptionProps) => {
   return (
     <div className="card bg-white shadow-xl h-[300px]">
-      <div className="card-body gap-y-4 overflow-y-scroll">
-        {/*Place field*/}
+      <div className="card-body gap-y-8 overflow-y-scroll">
         <PlaceField name="Nombre" content={place.name} icon={faComments} />
+
         <PlaceField
           name="Descripción"
           content={place.description}
           icon={faContactBook}
         />
+
         <PlaceField name="Dirección" content={place.location} icon={faGlobe} />
+
         <PlaceField
           name="Actividades"
           content={place.activities || []}

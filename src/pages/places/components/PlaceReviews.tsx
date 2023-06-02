@@ -25,9 +25,11 @@ export const PlaceReviews = ({ reviews }: PlaceReviewsProps) => {
     <div className="card bg-white shadow-xl h-[300px]">
       <div className="card-body overflow-y-scroll">
         <h1 className="card-title self-center text-primary">Comentarios</h1>
-        {reviews.map(review => (
-          <Review key={review._id} review={review} />
-        ))}
+        {reviews.length > 0 ? (
+          reviews.map(review => <Review key={review._id} review={review} />)
+        ) : (
+          <div className="w-full text-center">Aun no ha comentarios... 🙁</div>
+        )}
       </div>
     </div>
   )
