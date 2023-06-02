@@ -1,26 +1,48 @@
-import { FirestoreError, addDoc, collection } from 'firebase/firestore'
-import { FirestoreDB } from '@/setup/firebase'
+import { FirestoreError, addDoc, collection, setDoc } from 'firebase/firestore'
+import { FirebaseStorage, FirestoreDB } from '@/setup/firebase'
 import { PublishPlace } from '@/pages/places/validations/PublishPlace'
+import {
+  StorageError,
+  getDownloadURL,
+  ref,
+  uploadBytes
+} from 'firebase/storage'
 
 interface BaseResponse {
   hasError: boolean
   errorMsg?: string
 }
 
+const savePlaceImg = async (file: File, placeId: string): Promise<string> => {
+  try {
+    await uploadBytes(ref(FirebaseStorage, `places/${placeId}`), file)
+    const imageUrl = await getDownloadURL(
+      ref(FirebaseStorage, `places/${placeId}`)
+    )
+    return imageUrl
+  } catch (error) {
+    const storageError = error as StorageError
+    throw new Error(storageError.message)
+  }
+}
+
 export const createPlace = async (
   placeData: PublishPlace & { createdByUserId: string }
 ): Promise<BaseResponse> => {
   try {
-    //1. Tengo que crear almacenar la información del lugar
+    const placeRef = await addDoc(collection(FirestoreDB, 'places'), {})
 
-    console.log('Datos a ser enviados a firestore: ', placeData)
+    const imgUrl = await savePlaceImg(
+      placeData.image.item(0) as File,
+      placeRef.id
+    )
 
-    await addDoc(collection(FirestoreDB, 'places'), {
+    await setDoc(placeRef, {
       city: placeData.city,
       category: placeData.category,
       name: placeData.name,
       description: placeData.description,
-      imgUrl: '',
+      imgUrl,
       location: placeData.location,
       activities: placeData.activities,
       createdAt: new Date(),

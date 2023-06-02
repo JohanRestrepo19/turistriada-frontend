@@ -23,7 +23,7 @@ export const PublishPlaceForm = () => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset
   } = useForm<PublishPlace>({
     resolver: publishPlaceResolver
@@ -105,7 +105,7 @@ export const PublishPlaceForm = () => {
           {fields.map((item, index) => (
             <li key={item.id} className="grid grid-cols-12 gap-2">
               <Input
-                title={`Actividad #${index + 1}`}
+                title={`Servicio/Producto #${index + 1}`}
                 {...register(`activities.${index}.name`)}
                 className="col-span-5"
               />
@@ -136,6 +136,7 @@ export const PublishPlaceForm = () => {
           styleType="secondary"
           className="sm:col-span-2"
           type="button"
+          disabled={isSubmitting}
           onClick={() => {
             if (fields.length < MAX_ACTIVITIES_FIELDS)
               append({ name: '', price: 0 })
@@ -156,6 +157,7 @@ export const PublishPlaceForm = () => {
             type="submit"
             styleType="primary"
             className="sm:col-span-2 w-1/2"
+            disabled={isSubmitting}
           >
             PUBLICAR
           </Button>
