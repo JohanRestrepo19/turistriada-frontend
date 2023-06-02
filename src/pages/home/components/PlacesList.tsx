@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/common/hooks'
 import { PlaceCard, Loader } from '@/common/components'
 import {
-  fetchRecommendedPlaces,
+  fetchLatestPlaces,
   selectFilteredPlaces,
   selectPlacesStatus
 } from '@/store/slices/recommendationSlice'
@@ -14,7 +14,7 @@ export const PlacesList = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchRecommendedPlaces())
+    dispatch(fetchLatestPlaces())
   }, [dispatch])
 
   if (placesStatus === 'pending') return <Loader />

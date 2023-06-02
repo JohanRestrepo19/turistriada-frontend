@@ -1,16 +1,16 @@
+import { RootState } from '..'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { getLatestPlaces } from '@/services/firebase/recommendations'
 
 import type { Category, Place, RequestStatus } from '@/common/types'
-import { RootState } from '..'
-import { getRecommendations } from '@/services/firebase/recommendations'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 // Thunk
-export const fetchRecommendedPlaces = createAsyncThunk<Place[] | undefined>(
+export const fetchLatestPlaces = createAsyncThunk<Place[] | undefined>(
   'recommendations/fetchPlaces',
   async (_, thunkApi) => {
     try {
-      return await getRecommendations()
+      return await getLatestPlaces()
     } catch (error) {
       return thunkApi.rejectWithValue(error)
     }
@@ -43,15 +43,15 @@ export const recommendationsSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchRecommendedPlaces.pending, state => {
+    builder.addCase(fetchLatestPlaces.pending, state => {
       state.placesStatus = 'pending'
     })
-    builder.addCase(fetchRecommendedPlaces.fulfilled, (state, action) => {
+    builder.addCase(fetchLatestPlaces.fulfilled, (state, action) => {
       state.placesStatus = 'fulfilled'
       state.places = action.payload as Place[]
       state.filteredPlaces = state.places
     })
-    builder.addCase(fetchRecommendedPlaces.rejected, state => {
+    builder.addCase(fetchLatestPlaces.rejected, state => {
       state.placesStatus = 'rejected'
     })
   }
