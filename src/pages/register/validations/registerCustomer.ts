@@ -13,6 +13,7 @@ const registerCustomerSchema = object({
   phoneNumber: string()
     .min(7, 'Tu telefono debe ser de al menos 7 digitos.')
     .required('Por favor ingresa tu numero de celular.'),
+  email: string().email().required('Por favor ingresa tu correo'),
   username: string().required('Por favor ingresa tu username.'),
   password: string()
     .min(8, 'Tu contraseña debe tener al menos 8 digitos')
