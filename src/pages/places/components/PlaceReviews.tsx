@@ -1,5 +1,8 @@
 import { Avatar } from '@/common/components'
 import { Review as IReview } from '@/common/types'
+import { getPlaceReviews } from '@/services/firebase'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 interface ReviewProps {
   review: IReview
@@ -17,10 +20,18 @@ const Review = ({ review }: ReviewProps) => {
 }
 
 interface PlaceReviewsProps {
-  reviews: IReview[]
+  placeId: string
 }
 
-export const PlaceReviews = ({ reviews }: PlaceReviewsProps) => {
+export const PlaceReviews = ({ placeId }: PlaceReviewsProps) => {
+  const [reviews, setReviews] = useState<IReview[]>([])
+  useEffect(() => {
+    getPlaceReviews(placeId).then(response => {
+      console.log('Respuesta de review: ', response.reviews)
+      if (response.hasError) return toast.error(response.errorMsg)
+      setReviews(response.reviews as IReview[])
+    })
+  }, [placeId])
   return (
     <div className="card bg-white shadow-xl h-[300px]">
       <div className="card-body overflow-y-scroll">

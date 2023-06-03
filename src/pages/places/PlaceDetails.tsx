@@ -19,10 +19,10 @@ export const PlaceDetails = () => {
       {/* 3. Description panel */}
       <PlaceDescription place={place} />
       {/* 4. Make a Review */}
-      <MakePlaceReview />
+      <MakePlaceReview placeId={place._id} />
 
       {/* 5. Show reviews. */}
-      <PlaceReviews reviews={place.reviews || []} />
+      <PlaceReviews placeId={place._id} />
     </div>
   )
 }

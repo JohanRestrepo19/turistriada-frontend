@@ -29,6 +29,7 @@ export interface Review {
   authorId: ModelId
   comment: string
   rating: number
+  createdAt: Date | string
 }
 
 export interface Activity {

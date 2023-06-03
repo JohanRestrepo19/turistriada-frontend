@@ -9,29 +9,32 @@ export const getRecommendations = async (): Promise<Place[]> => {
 }
 
 export const getLatestPlaces = async (): Promise<Place[]> => {
+  const latestPlaces: Place[] = []
   const latestPlacesQuery = query(
     collection(FirestoreDB, 'places'),
     orderBy('createdAt'),
     limit(10)
   )
-
   const latestPlacesSnapshot = await getDocs(latestPlacesQuery)
-  const latestPlaces: Place[] = latestPlacesSnapshot.docs.map(doc => {
-    return {
-      _id: doc.id,
+
+  for (const placeDoc of latestPlacesSnapshot.docs) {
+    const result: Place = {
+      _id: placeDoc.id,
       createdAt: convertFirestoreTimeStampToDate(
-        doc.get('createdAt')
+        placeDoc.get('createdAt')
       ).toString(),
-      city: doc.get('city'),
-      name: doc.get('name'),
-      imgUrl: doc.get('imgUrl'),
-      category: doc.get('category'),
-      location: doc.get('location'),
-      reviews: doc.get('reviews'),
-      description: doc.get('description'),
-      activities: doc.get('activities'),
-      createdByUserId: doc.get('createdByUserId')
+      city: placeDoc.get('city'),
+      name: placeDoc.get('name'),
+      imgUrl: placeDoc.get('imgUrl'),
+      category: placeDoc.get('category'),
+      location: placeDoc.get('location'),
+      reviews: placeDoc.get('reviews'),
+      description: placeDoc.get('description'),
+      activities: placeDoc.get('activities'),
+      createdByUserId: placeDoc.get('createdByUserId')
     }
-  })
+    latestPlaces.push(result)
+  }
+  console.log('Resultado final: ', latestPlaces)
   return latestPlaces
 }

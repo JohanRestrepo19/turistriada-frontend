@@ -4,23 +4,41 @@ import { Button, Rating, TextArea } from '@/common/components'
 import { MakeReview, makeReviewResolver } from '../validations/MakeReview'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { createPlaceReview } from '@/services/firebase'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
+import { toast } from 'react-toastify'
 
-export const MakePlaceReview = () => {
-  const [rate, setRate] = useState<number>(5)
+interface MakePlaceReviewProps {
+  placeId: string
+}
+
+export const MakePlaceReview = ({ placeId }: MakePlaceReviewProps) => {
+  const [rating, setRating] = useState<number>(5)
+  const authUser = useAppSelector(selectAuthUser)
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitting },
+    reset
   } = useForm<MakeReview>({
     resolver: makeReviewResolver
   })
 
-  const handleSubmitReview = (data: MakeReview) => {
-    console.log('Datos para enviar en el formulario: ', { ...data, rate })
+  const handleSubmitReview = async (data: MakeReview) => {
+    const response = await createPlaceReview(placeId, {
+      ...data,
+      rating,
+      authorId: authUser?._id as string,
+      createdAt: new Date()
+    })
+    if (response.hasError) return toast.error(response.errorMsg)
+    toast.success('Review creada exitosamente')
+    reset()
   }
 
   const handleChageRate = (value: number) => {
-    setRate(value)
+    setRating(value)
   }
 
   return (
@@ -49,6 +67,7 @@ export const MakePlaceReview = () => {
             styleType="primary"
             rounded
             icon={faPaperPlane}
+            disabled={isSubmitting}
             className="w-1/3 self-center"
           >
             Publicar
