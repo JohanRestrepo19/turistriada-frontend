@@ -1,7 +1,6 @@
-import { Customer } from "@/common/types"
-import { PersonalInformationCard } from "./components/PersonalInformationCard"
-import { CustomerPromotions } from "./components/CustomerPromotions"
-
+import { Customer } from '@/common/types'
+import { PersonalInformationCard } from './components/PersonalInformationCard'
+import { CustomerPromotions } from './components/CustomerPromotions'
 
 export const CustomerProfile = () => {
   // TODO: Props que van a llegar mas adelante a este componente
@@ -10,9 +9,9 @@ export const CustomerProfile = () => {
     commercialRegistration: 'HGS543FRSD2',
     username: 'brskcol',
     companyName: 'Bershka',
-    address: 'CRRA 4 #45 - 98 AV',
+    location: 'CRRA 4 #45 - 98 AV',
     email: 'company@test.com',
-    phone:'34623176763',
+    phone: '34623176763',
     role: 'customer',
     _id: 'ajfdsjk3278ksad',
     profileImgUrl: 'https://i1.sndcdn.com/artworks-3gGx7pRAPu1a-0-t500x500.jpg'
@@ -25,7 +24,7 @@ export const CustomerProfile = () => {
           <PersonalInformationCard customer={customer} />
         </div>
         <div className="mx-4 w-auto">
-          <CustomerPromotions key={customer._id}/>
+          <CustomerPromotions key={customer._id} />
         </div>
       </div>
     </>

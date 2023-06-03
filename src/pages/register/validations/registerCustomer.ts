@@ -3,14 +3,14 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 const registerCustomerSchema = object({
   nit: string()
-    .min(10, 'El NIT debe tener minimo 8 digitos')
+    .min(8, 'El NIT debe tener minimo 8 digitos')
     .required('El campo "NIT" es obligatorio.'),
   commercialRegistration: string().required(
     'El campo "Registro mercantil" es obligatorio.'
   ),
   companyName: string().required('Por favor ingresa el nombre de tu compañía.'),
-  address: string().required('Por favor ingresa la direccion de tu compañía.'),
-  phoneNumber: string()
+  location: string().required('Por favor ingresa la direccion de tu compañía.'),
+  phone: string()
     .min(7, 'Tu telefono debe ser de al menos 7 digitos.')
     .required('Por favor ingresa tu numero de celular.'),
   email: string().email().required('Por favor ingresa tu correo'),
@@ -25,5 +25,4 @@ const registerCustomerSchema = object({
 })
 
 export type RegisterCustomer = InferType<typeof registerCustomerSchema>
-
 export const registerCustomerResolver = yupResolver(registerCustomerSchema)

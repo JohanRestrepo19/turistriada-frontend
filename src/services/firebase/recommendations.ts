@@ -35,6 +35,5 @@ export const getLatestPlaces = async (): Promise<Place[]> => {
     }
     latestPlaces.push(result)
   }
-  console.log('Resultado final: ', latestPlaces)
   return latestPlaces
 }

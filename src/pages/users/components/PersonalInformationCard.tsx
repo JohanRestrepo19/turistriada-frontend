@@ -36,7 +36,9 @@ export const PersonalInformationCard = ({
         </div>
         <div className="flex items-center">
           <p className="font-semibold mr-1">Nombre:</p>
-          <p className="text-base overflow-hidden line-clamp-3">{user.name}</p>
+          <p className="text-base overflow-hidden line-clamp-3">
+            {user.firstName}
+          </p>
         </div>
         <div className="flex items-center">
           <p className="font-semibold mr-1">Apellido:</p>

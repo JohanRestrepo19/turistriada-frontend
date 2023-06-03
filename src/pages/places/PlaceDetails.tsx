@@ -16,12 +16,8 @@ export const PlaceDetails = () => {
       {/* 1. Navbar */}
       {/* 2. Images slider */}
       <PlaceImageSlider imgSrc={place?.imgUrl || ''} />
-      {/* 3. Description panel */}
       <PlaceDescription place={place} />
-      {/* 4. Make a Review */}
       <MakePlaceReview placeId={place._id} />
-
-      {/* 5. Show reviews. */}
       <PlaceReviews placeId={place._id} />
     </div>
   )

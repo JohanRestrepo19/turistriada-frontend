@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import { Input, Button, TuristriadaHeading } from '@/common/components'
 import { useAppDispatch, useAppSelector } from '@/common/hooks'
-import { login, selectAuthLoading } from '@/store/slices/authSlice'
+import { loginUser, selectAuthLoading } from '@/store/slices/authSlice'
 
 interface LoginFormFields {
   email: string
@@ -19,7 +19,7 @@ export const LoginForm = () => {
   const { register, handleSubmit } = useForm<LoginFormFields>()
 
   const handleSubmitLogin = (data: LoginFormFields) => {
-    dispatch(login(data))
+    dispatch(loginUser(data))
       .unwrap()
       .then(authUser => {
         if (authUser?.role === 'user') navigate('/')

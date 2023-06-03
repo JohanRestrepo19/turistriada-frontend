@@ -1,7 +1,7 @@
 import { AuthError, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { FirestoreError, doc, getDoc } from 'firebase/firestore'
 import { FirebaseAuth, FirestoreDB } from '@/setup/firebase'
-import { User } from '@/common/types'
+import { Customer, User } from '@/common/types'
 
 export interface LoginFirebase {
   email: string
@@ -14,12 +14,15 @@ interface BaseRespone {
 }
 
 interface LoginResponse extends BaseRespone {
-  user?: User
+  user?: User | Customer
 }
 
-const fetchUserFromFirestore = async (userId: string): Promise<User | void> => {
+const fetchUserFromFirestore = async (
+  userId: string,
+  collection: 'users' | 'customers'
+): Promise<User | Customer | void> => {
   try {
-    const userRef = doc(FirestoreDB, 'users', userId)
+    const userRef = doc(FirestoreDB, collection, userId)
     const userSnap = await getDoc(userRef)
     if (userSnap.exists()) {
       const userData = userSnap.data()
@@ -43,7 +46,23 @@ export const loginToFirebase = async ({
       email,
       password
     )
-    const user = (await fetchUserFromFirestore(userCredential.user.uid)) as User
+
+    console.log('Credneciales de usuario: ', userCredential)
+
+    const user = (await fetchUserFromFirestore(
+      userCredential.user.uid,
+      'users'
+    )) as User
+
+    if (user === undefined) {
+      const customer = (await fetchUserFromFirestore(
+        userCredential.user.uid,
+        'customers'
+      )) as Customer
+
+      return { user: customer, hasError: false }
+    }
+
     return { user, hasError: false }
   } catch (error) {
     const authError = error as AuthError
