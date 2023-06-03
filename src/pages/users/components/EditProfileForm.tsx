@@ -1,11 +1,44 @@
 import { Button, Input } from '@/common/components'
 import { User } from '@/common/types'
+import { EditProfile, editProfileResolver } from '../validations/EditProfile'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 interface EditProfileFormProps {
   user: User
 }
 
 export default function EditProfileForm({ user }: EditProfileFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<EditProfile>({
+    resolver: editProfileResolver
+  })
+
+  const handleSubmitForm = (data: EditProfile) => {
+    console.log('Data para editar: ', data)
+  }
+
+  const [userData, setUserData] = useState({
+    username: user.username,
+    document: user.documentNumber,
+    name: user.name,
+    lastname: user.lastName,
+    email: user.email
+  })
+
+  // FIXME: Encontrar tipo para el evento...
+  const handleInputChange = e => {
+    const { name, value } = e.target
+    console.log(e.target.value)
+    setUserData(prevValues => ({
+      ...prevValues,
+      [name]: value
+    }))
+  }
+
   return (
     <>
       <div className="max-w-2xl py-4 px-8 bg-primary-light shadow-lg rounded-lg my-24">
@@ -21,13 +54,14 @@ export default function EditProfileForm({ user }: EditProfileFormProps) {
         <div className="h-0.5 w-3/3 bg-primary mb-2"></div>
         <form
           className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-          // onSubmit={handleSubmit(handleSubmitForm)}
+          onSubmit={handleSubmit(handleSubmitForm)}
         >
           <Input
             title="Nombre usuario"
-            value={user.username}
-            /* {...register('username')}
-          error={errors.username?.message} */
+            value={userData.username}
+            {...register('username')}
+            error={errors.username?.message}
+            onChange={handleInputChange}
           />
 
           <Input
@@ -35,29 +69,30 @@ export default function EditProfileForm({ user }: EditProfileFormProps) {
             title="Numero documento"
             disabled
             value={user.documentNumber}
-            /* {...register('documentNumber')}
-          error={errors.documentNumber?.message} */
           />
 
           <Input
             title="Primer nombre"
             value={user.name}
-            /* {...register('firstName')}
-          error={errors.firstName?.message} */
+            {...register('firstName')}
+            error={errors.firstName?.message}
+            onChange={handleInputChange}
           />
 
           <Input
             title="Apellido"
             value={user.lastName}
-            /* {...register('lastName')}
-          error={errors.lastName?.message} */
+            {...register('lastName')}
+            error={errors.lastName?.message}
+            onChange={handleInputChange}
           />
 
           <Input
             title="Email"
             value={user.email}
-            /* {...register('email')}
-          error={errors.email?.message} */
+            {...register('email')}
+            error={errors.email?.message}
+            onChange={handleInputChange}
           />
 
           <Input type="date" title="Fecha de nacimiento" />
@@ -66,37 +101,24 @@ export default function EditProfileForm({ user }: EditProfileFormProps) {
             type="password"
             title="Contraseña"
             placeholder="********"
-            /* {...register('password')}
-          error={errors.password?.message} */
+            {...register('password')}
+            error={errors.password?.message}
           />
 
           <Input
             type="password"
             title="Confirmar contraseña"
             placeholder="********"
-            /* {...register('confirmPassword')}
-          error={errors.confirmPassword?.message} */
+            {...register('confirmPassword')}
+            error={errors.confirmPassword?.message}
           />
-        </form>
-
-        <div className="flex justify-center text-center mt-8">
-          <Button
-            type="submit"
-            styleType="primary"
-            className="w-52 mr-4"
-            // disabled={registerStatus === 'pending'}
-          >
+          <Button type="submit" styleType="primary" className="w-full">
             EDITAR
           </Button>
-          <Button
-            type="submit"
-            styleType="secondary"
-            className="w-52"
-            // disabled={registerStatus === 'pending'}
-          >
+          <Button type="submit" styleType="secondary" className="w-full">
             ELIMINAR
           </Button>
-        </div>
+        </form>
       </div>
     </>
   )
