@@ -27,7 +27,6 @@ export const PlaceReviews = ({ placeId }: PlaceReviewsProps) => {
   const [reviews, setReviews] = useState<IReview[]>([])
   useEffect(() => {
     getPlaceReviews(placeId).then(response => {
-      console.log('Respuesta de review: ', response.reviews)
       if (response.hasError) return toast.error(response.errorMsg)
       setReviews(response.reviews as IReview[])
     })
