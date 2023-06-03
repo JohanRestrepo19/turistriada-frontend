@@ -25,7 +25,7 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
   const [userData, setUserData] = useState({
     username: user.username,
     document: user.documentNumber,
-    name: user.name,
+    name: user.firstName,
     lastname: user.lastName,
     email: user.email
   })
@@ -74,7 +74,7 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
 
           <Input
             title="Primer nombre"
-            value={user.name}
+            value={user.firstName}
             {...register('firstName')}
             error={errors.firstName?.message}
             onChange={handleInputChange}

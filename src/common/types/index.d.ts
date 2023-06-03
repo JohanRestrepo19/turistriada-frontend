@@ -14,7 +14,7 @@ export type Category =
 
 export interface User {
   _id: ModelId
-  name: string
+  firstName: string
   lastName: string
   username?: string
   role: UserRole

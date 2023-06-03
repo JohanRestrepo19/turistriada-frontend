@@ -7,7 +7,7 @@ export const EditProfile = () => {
     documentType: 'CC',
     documentNumber: '100452621',
     username: 'Brandddd',
-    name: 'Brandon',
+    firstName: 'Brandon',
     lastName: 'Alvarez',
     email: 'hola.correo@utp.edu.co',
     role: 'user',

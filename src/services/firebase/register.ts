@@ -23,7 +23,7 @@ const makeUserResposne = (
 ): User => {
   return {
     _id: userInfo.id,
-    name: userInfo.firstName,
+    firstName: userInfo.firstName,
     lastName: userInfo.lastName,
     username: userInfo.username,
     role: 'user',
