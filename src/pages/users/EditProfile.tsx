@@ -1,5 +1,5 @@
 import { User } from '@/common/types'
-import EditProfileForm from './components/EditProfileForm'
+import { EditProfileForm } from './components/EditProfileForm'
 
 export const EditProfile = () => {
   // TODO: Props que van a llegar mas adelante a este componente

@@ -1,6 +1,6 @@
 import { Button, Input } from '@/common/components'
 import { User } from '@/common/types'
-import { EditProfile, editProfileResolver } from '../validations/EditProfile'
+import { EditProfile, editProfileResolver } from '../validations/editProfile'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 
@@ -8,7 +8,7 @@ interface EditProfileFormProps {
   user: User
 }
 
-export default function EditProfileForm({ user }: EditProfileFormProps) {
+export const EditProfileForm = ({ user }: EditProfileFormProps) => {
   const {
     register,
     handleSubmit,
@@ -21,6 +21,7 @@ export default function EditProfileForm({ user }: EditProfileFormProps) {
     console.log('Data para editar: ', data)
   }
 
+  //FIXME: El estado del formulario lo manera el hook useForm, no hay necesidad de que lo maneje con el handleInputChange
   const [userData, setUserData] = useState({
     username: user.username,
     document: user.documentNumber,
