@@ -12,6 +12,7 @@ const MAX_ACTIVITIES_FIELDS = 5
 
 const cities: City[] = ['pereira', 'dosquebradas', 'santa rosa']
 const categories: Category[] = [
+  'lugares de interes',
   'comida',
   'hospedaje',
   'instituciones culturales'
