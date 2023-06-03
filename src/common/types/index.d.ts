@@ -14,26 +14,26 @@ export type Category =
 
 export interface User {
   _id: ModelId
+  documentNumber: string | number
+  documentType: DocumentType
+  email: string
   firstName: string
   lastName: string
-  username?: string
-  role: UserRole
   profileImgUrl?: string
-  documentType: DocumentType
-  documentNumber: string | number
-  email: string
+  role: 'user'
+  username?: string
 }
+
 export interface Customer {
   _id: ModelId
-  nit: string | number
+  location?: string
   commercialRegistration: string
   companyName: string
-  address?: string
-  phone: string | number
-  username?: string
   email: string
+  nit: string
+  phone: string
   profileImgUrl?: string
-  role: UserRole
+  role: 'customer'
 }
 
 export interface Review {

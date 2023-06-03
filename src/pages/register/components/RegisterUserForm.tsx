@@ -104,7 +104,7 @@ export const RegisterUserForm = () => {
             className="col-span-2 w-1/2"
             disabled={registerStatus === 'pending'}
           >
-            INGRESAR
+            Registrarse
           </Button>
 
           <div>

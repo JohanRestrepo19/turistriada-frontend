@@ -36,7 +36,9 @@ export const PersonalInformationCard = ({
         </div>
         <div className="flex items-center">
           <p className="font-semibold mr-1">C.C:</p>
-          <p className="text-base overflow-hidden line-clamp-3">{customer.commercialRegistration}</p>
+          <p className="text-base overflow-hidden line-clamp-3">
+            {customer.commercialRegistration}
+          </p>
         </div>
         <div className="flex items-center">
           <p className="font-semibold mr-1">Nombre:</p>
@@ -46,7 +48,7 @@ export const PersonalInformationCard = ({
         </div>
         <div className="flex items-center">
           <p className="font-semibold mr-1">Dirección:</p>
-          <p className="overflow-hidden line-clamp-3">{customer.address}</p>
+          <p className="overflow-hidden line-clamp-3">{customer.location}</p>
         </div>
         <div className="flex items-center">
           <p className="font-semibold mr-1">Telefono:</p>

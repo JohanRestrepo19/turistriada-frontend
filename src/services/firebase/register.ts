@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, AuthError } from 'firebase/auth'
 import { doc, setDoc, FirestoreError } from 'firebase/firestore'
 import { FirebaseAuth, FirestoreDB } from '@/setup/firebase'
-import { User, DocumentType } from '@/common/types'
+import { User, DocumentType, Customer } from '@/common/types'
 
 export interface RegisterUserFirestore {
   documentType: DocumentType
@@ -34,6 +34,22 @@ const makeUserResposne = (
   }
 }
 
+const makeCustomerResponse = (
+  customerInfo: Omit<Customer, '_id'> & { id: string }
+): Customer => {
+  return {
+    _id: customerInfo.id,
+    location: customerInfo.location,
+    commercialRegistration: customerInfo.commercialRegistration,
+    companyName: customerInfo.companyName,
+    email: customerInfo.email,
+    nit: customerInfo.nit,
+    phone: customerInfo.phone,
+    profileImgUrl: customerInfo.profileImgUrl,
+    role: 'customer'
+  }
+}
+
 const createUserInFirestore = async (
   userInfo: RegisterUserFirestore & { id: string }
 ) => {
@@ -45,6 +61,23 @@ const createUserInFirestore = async (
       profileImgUrl: ''
     })
     return makeUserResposne(userInfo)
+  } catch (error) {
+    const firestoreError = error as FirestoreError
+    throw new Error(firestoreError.message)
+  }
+}
+
+const createCustomerInFirestore = async (
+  customerInfo: Omit<Customer, '_id'> & { id: string }
+) => {
+  try {
+    const { id, ...customerFields } = customerInfo
+    await setDoc(doc(FirestoreDB, 'customers', id), {
+      ...customerFields,
+      role: 'customer',
+      profileImgUrl: ''
+    })
+    return makeCustomerResponse(customerInfo)
   } catch (error) {
     const firestoreError = error as FirestoreError
     throw new Error(firestoreError.message)
@@ -76,6 +109,35 @@ export const registerUser = async (
         errorMsg: 'El correo electronico ya está en uso'
       }
 
+    return {
+      hasError: true,
+      errorMsg: authError.message
+    }
+  }
+}
+
+export const registerCustomer = async (
+  customerInfo: Omit<Customer, '_id' | 'role'> & { password: string }
+): Promise<RegisterResponse> => {
+  try {
+    const customerCredential = await createUserWithEmailAndPassword(
+      FirebaseAuth,
+      customerInfo.email,
+      customerInfo.password
+    )
+    await createCustomerInFirestore({
+      id: customerCredential.user.uid,
+      role: 'customer',
+      ...customerInfo
+    })
+    return { hasError: false }
+  } catch (error) {
+    const authError = error as AuthError
+    if (authError.code === 'auth/email-already-in-use')
+      return {
+        hasError: true,
+        errorMsg: 'El correo electronico ya está en uso'
+      }
     return {
       hasError: true,
       errorMsg: authError.message

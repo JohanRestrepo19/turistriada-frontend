@@ -2,15 +2,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   loginToFirebase,
   logoutFromFirebase,
-  registerUser as registerUserService
+  registerUser as registerUserService,
+  registerCustomer as registerCustomerService
 } from '@/services/firebase'
 import type { LoginFirebase, RegisterUserFirestore } from '@/services/firebase'
-import type { RequestStatus, User } from '@/common/types'
+import type { Customer, RequestStatus, User } from '@/common/types'
 import { RootState } from '../'
 
 //Thunks.
 export const registerUser = createAsyncThunk<
-  unknown,
+  User | void,
   RegisterUserFirestore,
   { state: RootState }
 >('auth/registerUser', async (userInfo, thunkApi) => {
@@ -20,8 +21,18 @@ export const registerUser = createAsyncThunk<
   if (response.hasError) return thunkApi.rejectWithValue(response.errorMsg)
 })
 
-export const login = createAsyncThunk<
-  User | undefined, //TODO: add User and Customer types.
+export const registerCustomer = createAsyncThunk<
+  Customer | void,
+  Omit<Customer, '_id' | 'role'> & { password: string },
+  { state: RootState }
+>('auth/registerCustomer', async (customerInfo, thunkApi) => {
+  console.log('Customer information: ', { customerInfo, thunkApi })
+  const response = await registerCustomerService(customerInfo)
+  if (response.hasError) return thunkApi.rejectWithValue(response.errorMsg)
+})
+
+export const loginUser = createAsyncThunk<
+  User | Customer | undefined,
   LoginFirebase,
   { state: RootState }
 >('auth/login', async (userCredentials, thunkApi) => {
@@ -44,7 +55,7 @@ export const logout = createAsyncThunk<void, void, { state: RootState }>(
 
 //State declaration.
 interface AuthState {
-  user: User | null
+  user: User | Customer | null
   loading: RequestStatus
   error: string | null
 }
@@ -61,7 +72,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    //Register
+    //Register user
     builder
       .addCase(registerUser.pending, state => {
         if (state.loading === 'idle') state.loading = 'pending'
@@ -78,19 +89,36 @@ export const authSlice = createSlice({
           state.error = action.payload as string
         }
       })
-    //Login
+    //Register customer
     builder
-      .addCase(login.pending, state => {
+      .addCase(registerCustomer.pending, state => {
         if (state.loading === 'idle') state.loading = 'pending'
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(registerCustomer.fulfilled, state => {
         if (state.loading === 'pending') {
           state.loading = 'idle'
           state.error = null
-          state.user = action.payload as User
         }
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(registerCustomer.rejected, (state, action) => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle'
+          state.error = action.payload as string
+        }
+      })
+    //Login
+    builder
+      .addCase(loginUser.pending, state => {
+        if (state.loading === 'idle') state.loading = 'pending'
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        if (state.loading === 'pending') {
+          state.loading = 'idle'
+          state.error = null
+          state.user = action.payload as User | Customer //NOTE: Be careful with this assertion.
+        }
+      })
+      .addCase(loginUser.rejected, (state, action) => {
         if (state.loading === 'pending') {
           state.loading = 'idle'
           state.error = action.payload as string
