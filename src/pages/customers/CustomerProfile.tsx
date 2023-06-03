@@ -25,7 +25,7 @@ export const CustomerProfile = () => {
           <PersonalInformationCard customer={customer} />
         </div>
         <div className="mx-4 w-auto">
-          <CustomerPromotions key={'promotions'}/>
+          <CustomerPromotions key={customer._id}/>
         </div>
       </div>
     </>

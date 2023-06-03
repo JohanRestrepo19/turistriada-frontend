@@ -29,6 +29,7 @@ export const AppRouter = () => {
           <Route path="/places/:placeId" element={<PlaceDetails />} />
           <Route path="/categories" element={<h1>categories</h1>} />
           <Route path="/users/:userId" element={<UserProfile />} />
+          <Route path="/users/:userId/edit" element={<h1>Editar perfil</h1>} />
         </Route>
 
         <Route element={<CustomerLayout />}>
