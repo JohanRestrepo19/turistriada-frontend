@@ -20,6 +20,11 @@ export const UserNavbar = () => {
       })
   }
 
+  const handleProfile = () => {
+    // TODO: Se debe usar el id del usuario que este logeado actualmente...
+    navigate(`/users/:userId`)
+  }
+
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-primary' : ''
 
@@ -42,7 +47,9 @@ export const UserNavbar = () => {
               Categorias
             </NavLink>
             <button onClick={handleClickLogout}>Logout</button>
-            <Avatar className="hidden lg:block" />
+            <button onClick={handleProfile}>
+              <Avatar className="hidden lg:block" />
+            </button>
           </nav>
         </div>
       </div>

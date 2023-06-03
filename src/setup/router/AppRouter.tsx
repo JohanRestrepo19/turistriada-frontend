@@ -6,9 +6,10 @@ import { UserLayout } from '@/layouts/user'
 import { Home } from '@/pages/home'
 import { Login } from '@/pages/login'
 import { Register, RegisterCustomer, RegisterUser } from '@/pages/register'
-import { UserProfile } from '@/pages/users'
+import { EditProfile, UserProfile } from '@/pages/users'
 import { CustomerLayout } from '@/layouts/customer'
 import { PlaceDetails, PublishPlace } from '@/pages/places'
+import { CustomerProfile } from '@/pages/customers'
 
 export const AppRouter = () => {
   return (
@@ -28,14 +29,12 @@ export const AppRouter = () => {
           <Route path="/places/:placeId" element={<PlaceDetails />} />
           <Route path="/categories" element={<h1>categories</h1>} />
           <Route path="/users/:userId" element={<UserProfile />} />
+          <Route path="/users/:userId/edit" element={<EditProfile />} />
         </Route>
 
         <Route element={<CustomerLayout />}>
-          <Route path="/customers" element={<h1>Customer Home</h1>} />
-          <Route
-            path="/customers/:customerId"
-            element={<h1>Customer Profile</h1>}
-          />
+          <Route path="/customers" element={<h1>Customers</h1>} />
+          <Route path="/customers/:customerId" element={<CustomerProfile />} />
           <Route path="/customers/promos/new-promo" element={<h1>Promos</h1>} />
           <Route
             path="/customers/promos/new-service"

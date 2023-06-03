@@ -5,8 +5,16 @@ import {
   RegisterCustomer,
   registerCustomerResolver
 } from '../validations/registerCustomer'
+/* import { useAppDispatch, useAppSelector } from '@/common/hooks'
+import { selectAuthLoading } from '@/store/slices/authSlice'
+import { registerUser } from '@/services/firebase'
+import { toast } from 'react-toastify' */
 
 export const RegisterCustomerForm = () => {
+  /* const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const registerStatus = useAppSelector(selectAuthLoading) */
+
   const {
     register,
     handleSubmit,
@@ -15,7 +23,15 @@ export const RegisterCustomerForm = () => {
     resolver: registerCustomerResolver
   })
   const handleSubmitForm = (data: RegisterCustomer) => {
-    console.log('FieldValues: ', data)
+    /* dispatch(registerUser({ ...data }))
+      .unwrap()
+      .then(() => {
+        navigate('/login')
+      })
+      .catch(rejectedValue => {
+        toast.error(rejectedValue)
+      }) */
+    console.log(data)
   }
   return (
     <>
@@ -44,6 +60,7 @@ export const RegisterCustomerForm = () => {
         />
         {/* Nombre de compañía */}
         <Input
+          className="col-span-2"
           title="Nombre de la compañía"
           {...register('companyName')}
           error={errors.companyName?.message}
@@ -60,6 +77,12 @@ export const RegisterCustomerForm = () => {
           title="Número de teléfono"
           {...register('phoneNumber')}
           error={errors.phoneNumber?.message}
+        />
+        {/* Correo electronico */}
+        <Input
+          title="Email"
+          {...register('email')}
+          error={errors.email?.message}
         />
         {/* Nombre de usuario */}
         <Input
@@ -86,6 +109,7 @@ export const RegisterCustomerForm = () => {
             type="submit"
             styleType="primary"
             className="col-span-2 w-1/2"
+            // disabled={registerStatus === 'pending'}
           >
             INGRESAR
           </Button>

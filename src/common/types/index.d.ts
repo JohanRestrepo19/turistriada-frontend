@@ -23,6 +23,18 @@ export interface User {
   documentNumber: string | number
   email: string
 }
+export interface Customer {
+  _id: ModelId
+  nit: string | number
+  commercialRegistration: string
+  companyName: string
+  address?: string
+  phone: string | number
+  username?: string
+  email: string
+  profileImgUrl?: string
+  role: UserRole
+}
 
 export interface Review {
   _id: ModelId
