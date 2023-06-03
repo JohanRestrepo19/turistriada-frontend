@@ -7,6 +7,7 @@ export type City = 'pereira' | 'dosquebradas' | 'santa rosa'
 export type DocumentType = 'CC' | 'NIT'
 
 export type Category =
+  | 'lugares de interes'
   | 'comida'
   | 'hospedaje'
   | 'instituciones culturales'

@@ -38,15 +38,12 @@ export const UserNavbar = () => {
               Inicio
             </NavLink>
             <NavLink to="/places/new-place" className={handleActiveClass}>
-              Publica
+              Publicar
             </NavLink>
             <NavLink to="/curiosities" className={handleActiveClass}>
-              ¿Sabías qué?
+              Promociones
             </NavLink>
-            <NavLink to="/categories" className={handleActiveClass}>
-              Categorias
-            </NavLink>
-            <button onClick={handleClickLogout}>Logout</button>
+            <button onClick={handleClickLogout}>Salir</button>
             <button onClick={handleProfile}>
               <Avatar className="hidden lg:block" />
             </button>
