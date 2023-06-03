@@ -12,12 +12,9 @@ interface UserResponse extends BaseResponse {
 }
 export const getUserById = async (userId: string): Promise<UserResponse> => {
   try {
-    console.log('Servicio para traer información de usuarios.', { userId })
     const userRef = doc(FirestoreDB, 'users', userId)
     const userSnapshot = await getDoc(userRef)
-
     if (userSnapshot.exists()) {
-      console.log('Id del usuario: ', userSnapshot.id)
       const userData = userSnapshot.data()
       const { password, confirmPassword, ...userPayload } = userData //eslint-disable-line
       const user = { _id: userId, ...userPayload } as User
