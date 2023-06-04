@@ -18,7 +18,11 @@ export const PersonalInformationCard = ({
     <div className="card w-60 bg-primary-content shadow-xl my-4 py-5">
       <figure className="px-12 pt-12">
         <img
-          src={customer.profileImgUrl}
+          src={
+            customer.profileImgUrl
+              ? customer.profileImgUrl
+              : 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
+          }
           alt="profile-pic"
           className="rounded-full"
         />

@@ -1,20 +1,23 @@
 import { Customer } from '@/common/types'
 import { PersonalInformationCard } from './components/PersonalInformationCard'
 import { CustomerPromotions } from './components/CustomerPromotions'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
 
 export const CustomerProfile = () => {
-  // TODO: Props que van a llegar mas adelante a este componente
+  const authUser = useAppSelector(selectAuthUser) as Customer
+
   const customer: Customer = {
-    nit: '100452621',
-    commercialRegistration: 'HGS543FRSD2',
-    username: 'brskcol',
-    companyName: 'Bershka',
-    location: 'CRRA 4 #45 - 98 AV',
-    email: 'company@test.com',
-    phone: '34623176763',
-    role: 'customer',
-    _id: 'ajfdsjk3278ksad',
-    profileImgUrl: 'https://i1.sndcdn.com/artworks-3gGx7pRAPu1a-0-t500x500.jpg'
+    commercialRegistration: authUser.commercialRegistration,
+    nit: authUser.nit,
+    companyName: authUser.companyName,
+    location: authUser.location,
+    email: authUser.email,
+    username: authUser.username,
+    _id: authUser._id,
+    phone: authUser.phone,
+    role: authUser.role,
+    profileImgUrl: authUser.profileImgUrl
   }
 
   return (
