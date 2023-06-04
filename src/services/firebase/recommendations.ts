@@ -1,7 +1,7 @@
 import { Place } from '@/common/types'
 import { convertFirestoreTimeStampToDate } from '@/common/utils'
 import { FirestoreDB } from '@/setup/firebase'
-import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore'
+import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 
 export const getRecommendations = async (): Promise<Place[]> => {
   await new Promise(resolve => setTimeout(resolve, 500))
@@ -12,8 +12,7 @@ export const getLatestPlaces = async (): Promise<Place[]> => {
   const latestPlaces: Place[] = []
   const latestPlacesQuery = query(
     collection(FirestoreDB, 'places'),
-    orderBy('createdAt', 'desc'),
-    limit(10)
+    orderBy('createdAt', 'desc')
   )
   const latestPlacesSnapshot = await getDocs(latestPlacesQuery)
 
