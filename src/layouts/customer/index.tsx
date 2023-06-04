@@ -6,11 +6,11 @@ import { selectAuthUser } from '@/store/slices/authSlice'
 import { NotificationsContainer } from '@/common/components'
 
 export const CustomerLayout = () => {
-  const authUser = useAppSelector(selectAuthUser)
+  // const authUser = useAppSelector(selectAuthUser)
 
-  if (!authUser) return <Navigate to="/login" />
+  // if (!authUser) return <Navigate to="/login" />
 
-  if (authUser.role === 'user') return <Navigate to="/" />
+  // if (authUser.role === 'user') return <Navigate to="/" />
 
   return (
     <div className="min-h-screen flex flex-col">

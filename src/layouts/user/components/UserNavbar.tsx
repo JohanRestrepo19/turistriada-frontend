@@ -40,7 +40,7 @@ export const UserNavbar = () => {
             <NavLink to="/places/new-place" className={handleActiveClass}>
               Publicar
             </NavLink>
-            <NavLink to="/curiosities" className={handleActiveClass}>
+            <NavLink to="/promotions" className={handleActiveClass}>
               Promociones
             </NavLink>
             <button onClick={handleClickLogout}>Salir</button>
