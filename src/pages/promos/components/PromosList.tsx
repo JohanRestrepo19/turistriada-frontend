@@ -1,16 +1,12 @@
-
 import { Promo } from '@/common/types'
 import { PromoCard } from './PromoCard'
 
+interface PromosListProps {
+  promos: Promo[]
+}
 
-export const PromosList = () => {
-
-  const promos: Promo[] = [
-    {_id: '1', title: 'Frisby 2x1', description: 'Lleva dos pollos Frisby por el precio de uno.', promoImgUrl: 'https://cazaofertas.com.co/wp-content/uploads/2015/05/oferta-57.png'},
-    {_id: '1', title: 'Frisby 2x1', description: 'Lleva dos pollos Frisby por el precio de uno.', promoImgUrl: 'https://cazaofertas.com.co/wp-content/uploads/2015/05/oferta-57.png'},
-    {_id: '1', title: 'Frisby 2x1', description: 'Lleva dos pollos Frisby por el precio de uno.', promoImgUrl: 'https://cazaofertas.com.co/wp-content/uploads/2015/05/oferta-57.png'},
-    {_id: '1', title: 'Frisby 2x1', description: 'Lleva dos pollos Frisby por el precio de uno.', promoImgUrl: 'https://cazaofertas.com.co/wp-content/uploads/2015/05/oferta-57.png'}
-  ]
+export const PromosList = ({ promos }: PromosListProps) => {
+  if (promos.length === 0) return <h1>Aun no hay promociones disponibles 🙁</h1>
 
   return (
     <div className="flex flex-wrap justify-center items-start gap-x-4 gap-y-8 py-4">

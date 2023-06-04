@@ -1,4 +1,3 @@
-// TODO: Improve interfaces respect to data model.
 type ModelId = string
 
 export type RequestStatus = 'idle' | 'pending' | 'fulfilled' | 'rejected'

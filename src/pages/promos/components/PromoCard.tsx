@@ -1,14 +1,39 @@
-import type { Promo } from '@/common/types'
+import { useEffect, useState } from 'react'
+import type { Customer, Promo } from '@/common/types'
+import { getCustomerById } from '@/services/firebase'
+import { toast } from 'react-toastify'
+import { Loader } from '@/common/components'
 
 interface PromoCardProps {
   promo: Promo
 }
 
 export const PromoCard = ({ promo }: PromoCardProps) => {
+  const [customer, setCustomer] = useState<Customer | null>(null)
+  const [isLoading, setIsloading] = useState<boolean>(true)
+
+  useEffect(() => {
+    const getCustomer = async () => {
+      setIsloading(true)
+      const response = await getCustomerById(promo.createdByUserId)
+      if (response.hasError) return toast.error(response.errorMsg)
+      setCustomer(response.customer as Customer)
+      setIsloading(false)
+    }
+
+    getCustomer()
+  }, [promo.createdByUserId])
+
+  if (isLoading) return <Loader />
+
   return (
     <div className="card rounded-lg w-64 pb-2 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
       <figure className="w-full h-52 border rounded-sm border-b-accent shadow-lg">
-        <img className="object-cover h-full" src={promo.promoImgUrl} alt="Promo" />
+        <img
+          className="object-cover h-full"
+          src={promo.promoImgUrl}
+          alt="Promo"
+        />
       </figure>
 
       <div className="px-2 py-2 flex flex-col overflow-clip hover:overflow-y-scroll leading-relaxed">
@@ -30,20 +55,21 @@ export const PromoCard = ({ promo }: PromoCardProps) => {
         {/* Promo Published by */}
         <div>
           <p className="mb-2 text-justify">
-            <span className="font-semibold">Publicada por: </span>
-            {/* {promo.description} */}
+            <span className="font-semibold">
+              Publicada por: {customer?.companyName}
+            </span>
           </p>
         </div>
 
         {/* Promo Location */}
         <div>
           <p className="mb-2 text-justify">
-            <span className="font-semibold">Dirección: </span>
-            {/* {promo.description} */}
+            <span className="font-semibold">
+              Dirección: {customer?.location}
+            </span>
           </p>
         </div>
       </div>
-
     </div>
   )
 }
