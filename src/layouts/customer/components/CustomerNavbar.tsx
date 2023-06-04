@@ -1,9 +1,28 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Avatar, TuristriadaHeading } from '@/common/components'
+import { useAppDispatch } from '@/common/hooks'
+import { logout } from '@/store/slices/authSlice'
+import { toast } from 'react-toastify'
 
 export const CustomerNavbar = () => {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-primary' : ''
+
+  const handleProfile = () => {
+    // TODO: Se debe usar el id del usuario que este logeado actualmente...
+    navigate(`/customers/:userId`)
+  }
+
+  const handleClickLogout = () => {
+    dispatch(logout())
+      .unwrap()
+      .catch(rejectedValue => {
+        toast.error(rejectedValue)
+      })
+  }
 
   return (
     <>
@@ -23,8 +42,10 @@ export const CustomerNavbar = () => {
             >
               Publica tus promociones
             </NavLink>
-            <button>Salir</button>
-            <Avatar className="hidden lg:block" />
+            <button onClick={handleClickLogout}>Salir</button>
+            <button onClick={handleProfile}>
+              <Avatar className="hidden lg:block" />
+            </button>
           </nav>
         </div>
       </div>

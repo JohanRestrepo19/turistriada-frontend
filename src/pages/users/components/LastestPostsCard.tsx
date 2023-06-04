@@ -54,19 +54,23 @@ export const LastestPostsCard = () => {
       <h2 className="text-2xl my-4 text-primary font-bold text-center">
         Tus últimas publicaciones
       </h2>
-      <div className="text-center items-center">
-        <div className="grid grid-cols-2 gap-4">
-          {activeTab === 1 &&
-            places.map(place => (
-              <UserPostsGrid placeList={place} key={place._id} />
-            ))}
+      <div className="max-h-[700px] overflow-y-auto">
+        <div className="text-center items-center">
+          <div className="grid grid-cols-2 gap-4">
+            {activeTab === 1 &&
+              places.map(place => (
+                <UserPostsGrid placeList={place} key={place._id} />
+              ))}
+          </div>
         </div>
       </div>
 
-      {activeTab === 2 &&
-        places.map(place => (
-          <UserPostsList placeList={place} key={place._id} />
-        ))}
+      <div className="max-h-[700px] overflow-y-auto">
+        {activeTab === 2 &&
+          places.map(place => (
+            <UserPostsList placeList={place} key={place._id} />
+          ))}
+      </div>
     </>
   )
 }

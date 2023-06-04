@@ -22,7 +22,7 @@ export const UserProfile = () => {
         <div className="mx-4">
           <PersonalInformationCard user={user} />
         </div>
-        <div className="mx-4 w-96">
+        <div className="mx-4 w-full">
           <LastestPostsCard />
         </div>
       </div>
