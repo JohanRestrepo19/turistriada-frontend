@@ -19,7 +19,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
   }
 
   return (
-    <div className="card rounded-lg w-64 pb-4 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
+    <div className="card rounded-lg w-64 h-[600px] pb-4 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
       <figure className="w-full h-52 border rounded-sm border-b-accent shadow-lg">
         <img className="object-cover h-full" src={place.imgUrl} alt="Place" />
       </figure>
@@ -49,14 +49,14 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
 
         {/* Card description */}
         <div>
-          <p className="h-32 font-light">
+          <p className="mb-2 font-light">
             <span className="font-semibold">Descripción: </span>
             {place.description}
           </p>
         </div>
       </div>
 
-      <div className="card-actions justify-center">
+      <div className="card-actions justify-center mt-auto">
         <Button styleType="primary" rounded onClick={handleClickDetails}>
           Ver detalles
         </Button>
