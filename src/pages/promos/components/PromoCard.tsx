@@ -27,7 +27,7 @@ export const PromoCard = ({ promo }: PromoCardProps) => {
   if (isLoading) return <Loader />
 
   return (
-    <div className="card rounded-lg w-64 pb-2 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
+    <div className="card rounded-lg w-64 h-[550px] pb-2 bg-white text-secondary-text shadow-xl border-2 border-primary-light hover:scale-105 hover:border-accent ease-in-out duration-300">
       <figure className="w-full h-52 border rounded-sm border-b-accent shadow-lg">
         <img
           className="object-cover h-full"
