@@ -25,6 +25,15 @@ export interface User {
   username?: string
 }
 
+export interface Promo {
+  _id: ModelId
+  createdAt: Date | string
+  createdByUserId: MoldeId
+  description: string
+  promoImgUrl?: string
+  title: string
+}
+
 export interface Customer {
   _id: ModelId
   location?: string
