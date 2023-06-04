@@ -54,7 +54,7 @@ export const LastestPostsCard = () => {
       <h2 className="text-2xl my-4 text-primary font-bold text-center">
         Tus últimas publicaciones
       </h2>
-      <div className='text-center items-center'>
+      <div className="text-center items-center">
         <div className="grid grid-cols-2 gap-4">
           {activeTab === 1 &&
             places.map(place => (

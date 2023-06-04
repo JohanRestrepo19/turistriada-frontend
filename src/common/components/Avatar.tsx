@@ -19,21 +19,19 @@ export const Avatar = ({
     [`${className}`]: className,
     placeholder: !imgSrc
   })
-  
+
   if (imgSrc)
-  return (
-    <div className={avatarStyles}>
+    return (
+      <div className={avatarStyles}>
         <div className="rounded-full">
           <img src={imgSrc} height={height} width={width} />
         </div>
       </div>
     )
-    
-  console.log('llego a este punto')
 
   return (
-    <div className='w-12 h-12'>
-      <img src={avatar}/>
+    <div className="w-12 h-12">
+      <img src={avatar} />
     </div>
   )
 }

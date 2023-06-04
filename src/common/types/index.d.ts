@@ -27,11 +27,11 @@ export interface User {
 
 export interface Promo {
   _id: ModelId
-  title: string
+  createdAt: Date | string
+  createdByUserId: MoldeId
   description: string
   promoImgUrl?: string
-  // createdByUserId: MoldeId
-  // createdAt: Date | string
+  title: string
 }
 
 export interface Customer {
