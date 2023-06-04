@@ -5,6 +5,9 @@ import {
   EditProfileCustomer,
   EditProfileCustomerResolver
 } from '../validations/editProfileCustomer'
+import { updateCustomerInfo } from '@/services/firebase'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 interface EditProfileCustomerFormProps {
   customer: Customer
@@ -13,24 +16,31 @@ interface EditProfileCustomerFormProps {
 export const EditProfileCustomerForm = ({
   customer
 }: EditProfileCustomerFormProps) => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<EditProfileCustomer>({
     resolver: EditProfileCustomerResolver,
+    mode: 'all',
     defaultValues: {
       username: customer.username,
       companyName: customer.companyName,
       commercialRegistration: customer.commercialRegistration,
-      location: customer.location,
+      location: customer.location as string,
       email: customer.email,
       nit: customer.nit
     }
   })
 
-  const handleSubmitForm = (data: EditProfileCustomer) => {
+  const handleSubmitForm = async (data: EditProfileCustomer) => {
     console.log('Data para editar: ', data)
+    const response = await updateCustomerInfo(customer._id, { ...data })
+    if (response.hasError) return toast.error(response.errorMsg)
+    toast.success('Información actualizada exitosamente')
+    navigate(`/customers/${customer._id}`)
   }
 
   return (
@@ -46,10 +56,12 @@ export const EditProfileCustomerForm = ({
             }
           />
         </div>
+
         <p className="py-2 text-2xl font-bold text-primary text-center">
           Editar perfil
         </p>
         <div className="h-0.5 w-3/3 bg-primary mb-2"></div>
+
         <form
           className="grid grid-cols-2 gap-5"
           onSubmit={handleSubmit(handleSubmitForm)}
