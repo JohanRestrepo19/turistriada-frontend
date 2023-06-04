@@ -36,7 +36,7 @@ export const CategoriesFilter = () => {
         Hospedaje
       </button>
       <button
-        onClick={() => handleClickCategory('instituciones culturales')}
+        onClick={() => handleClickCategory('centros culturales')}
         className="btn btn-ghost"
       >
         Centros culturales
