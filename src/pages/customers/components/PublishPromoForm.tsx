@@ -5,9 +5,11 @@ import { createPromo } from '@/services/firebase'
 import { useAppSelector } from '@/common/hooks'
 import { selectAuthUser } from '@/store/slices/authSlice'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 export const PublishPromoForm = () => {
   const authUser = useAppSelector(selectAuthUser)
+  const navigate = useNavigate()
 
   const {
     register,
@@ -27,6 +29,7 @@ export const PublishPromoForm = () => {
     if (response.hasError) return toast.error(response.errorMsg)
     toast.success('Promo creada correctamente!')
     reset()
+    navigate(`/customers/${authUser?._id}`)
   }
 
   return (
@@ -53,7 +56,7 @@ export const PublishPromoForm = () => {
 
         {/*  */}
         <FileInput
-          title="Subir imagene *"
+          title="Subir imágen *"
           className="sm:col-span-2"
           {...register('image')}
           error={errors.image?.message}
