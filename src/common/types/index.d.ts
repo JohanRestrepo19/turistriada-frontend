@@ -30,6 +30,8 @@ export interface Promo {
   title: string
   description: string
   promoImgUrl?: string
+  // createdByUserId: MoldeId
+  // createdAt: Date | string
 }
 
 export interface Customer {

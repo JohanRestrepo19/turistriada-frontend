@@ -6,11 +6,11 @@ import { useAppSelector } from '@/common/hooks'
 import { UserNavbar } from './components/UserNavbar'
 
 export const UserLayout = () => {
-  // const authUser = useAppSelector(selectAuthUser)
+  const authUser = useAppSelector(selectAuthUser)
 
-  // if (!authUser) return <Navigate to="/login" />
+  if (!authUser) return <Navigate to="/login" />
 
-  // if (authUser.role === 'customer') return <Navigate to="/customers" />
+  if (authUser.role === 'customer') return <Navigate to="/customers" />
 
   return (
     <div className="min-h-screen flex flex-col">

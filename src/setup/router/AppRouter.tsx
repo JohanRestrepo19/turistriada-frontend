@@ -10,6 +10,7 @@ import { EditProfile, UserProfile } from '@/pages/users'
 import { CustomerLayout } from '@/layouts/customer'
 import { PlaceDetails, PublishPlace } from '@/pages/places'
 import { CustomerProfile, PublishPromo } from '@/pages/customers'
+import { ViewPromo } from '@/pages/promos/ViewPromo'
 
 export const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ export const AppRouter = () => {
           <Route path="/" element={<Home />} />
           <Route path="/places" element={<h1>places</h1>} />
           <Route path="/places/new-place" element={<PublishPlace />} />
+          <Route path="/promos/view-promo" element={<ViewPromo />} />
           <Route path="/places/:placeId" element={<PlaceDetails />} />
           <Route path="/users/:userId" element={<UserProfile />} />
           <Route path="/users/:userId/edit" element={<EditProfile />} />
