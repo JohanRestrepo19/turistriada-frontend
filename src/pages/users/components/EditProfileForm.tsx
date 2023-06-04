@@ -2,7 +2,6 @@ import { Button, Input } from '@/common/components'
 import { User } from '@/common/types'
 import { EditProfile, editProfileResolver } from '../validations/editProfile'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
 
 interface EditProfileFormProps {
   user: User
@@ -14,29 +13,18 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
     handleSubmit,
     formState: { errors }
   } = useForm<EditProfile>({
-    resolver: editProfileResolver
+    resolver: editProfileResolver,
+    defaultValues: {
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      document: user.documentNumber as string,
+      email: user.email
+    }
   })
 
   const handleSubmitForm = (data: EditProfile) => {
     console.log('Data para editar: ', data)
-  }
-
-  //FIXME: El estado del formulario lo manera el hook useForm, no hay necesidad de que lo maneje con el handleInputChange
-  const [userData, setUserData] = useState({
-    username: user.username,
-    document: user.documentNumber,
-    name: user.firstName,
-    lastname: user.lastName,
-  })
-
-  // FIXME: Encontrar tipo para el evento...
-  const handleInputChange = e => {
-    const { name, value } = e.target
-    console.log(e.target.value)
-    setUserData(prevValues => ({
-      ...prevValues,
-      [name]: value
-    }))
   }
 
   return (
@@ -45,7 +33,11 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
         <div className="flex justify-center md:justify-center -mt-20">
           <img
             className="w-32 h-32 object-cover rounded-full border-4 border-primary"
-            src={user.profileImgUrl}
+            src={
+              user.profileImgUrl
+                ? user.profileImgUrl
+                : 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
+            }
           />
         </div>
         <p className="py-2 text-2xl font-bold text-primary text-center">
@@ -56,60 +48,40 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
           className="grid grid-cols-1 sm:grid-cols-2 gap-8"
           onSubmit={handleSubmit(handleSubmitForm)}
         >
-          <Input title="Email" value={user.email} disabled />
+          <Input
+            title="Email"
+            {...register('email')}
+            disabled
+          />
 
           <Input
             type="number"
             title="Numero documento"
-            disabled
-            value={user.documentNumber}
+            {...register('document')}
+            error={errors.document?.message}
           />
 
           <Input
             title="Primer nombre"
-            value={user.firstName}
             {...register('firstName')}
             error={errors.firstName?.message}
-            onChange={handleInputChange}
           />
 
           <Input
             title="Apellido"
-            value={user.lastName}
             {...register('lastName')}
             error={errors.lastName?.message}
-            onChange={handleInputChange}
           />
 
           <Input
             title="Nombre usuario"
-            value={userData.username}
             {...register('username')}
+            className="col-span-2"
             error={errors.username?.message}
-            onChange={handleInputChange}
           />
-          <Input type="date" title="Fecha de nacimiento" />
-
-          <Input
-            type="password"
-            title="Contraseña"
-            placeholder="********"
-            {...register('password')}
-            error={errors.password?.message}
-          />
-
-          <Input
-            type="password"
-            title="Confirmar contraseña"
-            placeholder="********"
-            {...register('confirmPassword')}
-            error={errors.confirmPassword?.message}
-          />
-          <Button type="submit" styleType="primary" className="w-full">
+          
+          <Button type="submit" styleType="primary" className="col-span-2">
             EDITAR
-          </Button>
-          <Button type="submit" styleType="secondary" className="w-full">
-            ELIMINAR
           </Button>
         </form>
       </div>
