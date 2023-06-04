@@ -5,7 +5,8 @@ import {
   getDocs,
   orderBy,
   query,
-  setDoc
+  setDoc,
+  where
 } from 'firebase/firestore'
 import {
   StorageError,
@@ -91,6 +92,41 @@ export const getAllPromos = async (): Promise<PromosResponse> => {
     return { hasError: false, promos }
   } catch (error) {
     const firestoreError = error as FirestoreError
+    console.error(firestoreError.message)
+    return { hasError: true, errorMsg: firestoreError.message }
+  }
+}
+
+export const getPromosByCustomerId = async (
+  customerId: string
+): Promise<PromosResponse> => {
+  try {
+    const promos: Promo[] = []
+    const promosQuery = query(
+      collection(FirestoreDB, 'promos'),
+      where('createdByUserId', '==', customerId),
+      orderBy('createdAt', 'desc')
+    )
+    const promosSnapshot = await getDocs(promosQuery)
+
+    for (const promo of promosSnapshot.docs) {
+      const result: Promo = {
+        _id: promo.id,
+        createdAt: convertFirestoreTimeStampToDate(
+          promo.get('createdAt')
+        ).toString(),
+        createdByUserId: promo.get('createdByUserId'),
+        description: promo.get('description'),
+        promoImgUrl: promo.get('promoImgUrl'),
+        title: promo.get('title')
+      }
+      promos.push(result)
+    }
+
+    return { hasError: false, promos }
+  } catch (error) {
+    const firestoreError = error as FirestoreError
+    console.error(firestoreError.message)
     return { hasError: true, errorMsg: firestoreError.message }
   }
 }
