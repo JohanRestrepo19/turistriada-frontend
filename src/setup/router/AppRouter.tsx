@@ -11,7 +11,7 @@ import { CustomerLayout } from '@/layouts/customer'
 import { PlaceDetails, PublishPlace } from '@/pages/places'
 import { CustomerProfile, PublishPromo } from '@/pages/customers'
 import { ViewPromo } from '@/pages/promos/ViewPromo'
-import EditProfileCustomer from '@/pages/customers/EditProfileCustomer'
+import { EditProfileCustomer } from '@/pages/customers/EditProfileCustomer'
 
 export const AppRouter = () => {
   return (

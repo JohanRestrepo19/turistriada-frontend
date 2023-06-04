@@ -3,7 +3,7 @@ import { EditProfileCustomerForm } from './components/EditProfileCustomerForm'
 import { useAppSelector } from '@/common/hooks'
 import { selectAuthUser } from '@/store/slices/authSlice'
 
-export default function EditProfileCustomer() {
+export const EditProfileCustomer = () => {
 
   const authUser = useAppSelector(selectAuthUser) as Customer
 
