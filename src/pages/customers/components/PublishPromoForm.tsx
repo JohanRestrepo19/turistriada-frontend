@@ -3,19 +3,24 @@ import { useForm } from 'react-hook-form'
 import { PublishPromo, publishPromoResolver } from '../validations/PublishPromo'
 
 export const PublishPromoForm = () => {
-
-  const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<PublishPromo>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<PublishPromo>({
     resolver: publishPromoResolver
   })
 
   const handleSubmitForm = async (data: PublishPromo) => {
-    console.log('EStoy funcionando', data)
+    console.log('Estoy funcionando', data)
   }
 
   return (
     <>
-      <form className="grid grid-cols-1 sm:grid-cols-2 gap-8" onSubmit={handleSubmit(handleSubmitForm)}>
-        
+      <form
+        className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+        onSubmit={handleSubmit(handleSubmitForm)}
+      >
         {/* */}
         <Input
           title="Título de la promoción *"

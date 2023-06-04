@@ -34,7 +34,10 @@ export const AppRouter = () => {
         <Route element={<CustomerLayout />}>
           <Route path="/customers" element={<h1>Customers</h1>} />
           <Route path="/customers/:customerId" element={<CustomerProfile />} />
-          <Route path="/customers/promos/new-promo" element={<PublishPromo/>} />
+          <Route
+            path="/customers/promos/new-promo"
+            element={<PublishPromo />}
+          />
           <Route
             path="/customers/promos/new-service"
             element={<h1>Services - Products</h1>}

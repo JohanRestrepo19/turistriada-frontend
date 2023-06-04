@@ -1,7 +1,6 @@
 import { FormCard } from '@/common/components'
 import { PublishPromoForm } from './components/PublishPromoForm'
 
-
 export const PublishPromo = () => {
   return (
     <>
@@ -10,7 +9,7 @@ export const PublishPromo = () => {
           ¡Publica tu promoción!
         </h3>
         <FormCard>
-          <PublishPromoForm/>
+          <PublishPromoForm />
         </FormCard>
       </div>
     </>

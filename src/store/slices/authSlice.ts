@@ -26,7 +26,6 @@ export const registerCustomer = createAsyncThunk<
   Omit<Customer, '_id' | 'role'> & { password: string },
   { state: RootState }
 >('auth/registerCustomer', async (customerInfo, thunkApi) => {
-  console.log('Customer information: ', { customerInfo, thunkApi })
   const response = await registerCustomerService(customerInfo)
   if (response.hasError) return thunkApi.rejectWithValue(response.errorMsg)
 })

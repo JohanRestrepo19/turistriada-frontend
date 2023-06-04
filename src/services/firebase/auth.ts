@@ -47,8 +47,6 @@ export const loginToFirebase = async ({
       password
     )
 
-    console.log('Credneciales de usuario: ', userCredential)
-
     const user = (await fetchUserFromFirestore(
       userCredential.user.uid,
       'users'
