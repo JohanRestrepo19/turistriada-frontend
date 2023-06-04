@@ -45,54 +45,56 @@ export const RegisterUserForm = () => {
       >
         {/* <Input title="Tipo documento" /> */}
         <Select
-          title="Tipo documento"
+          title="Tipo documento *"
           {...register('documentType')}
           error={errors.documentType?.message}
         >
-          <option value="CC">Cedula de ciudadania</option>
+          <option value="CC">Cedula de ciudadanía</option>
+          <option value="CE">Cedula de extranjería</option>
+          <option value="PA">Pasaporte</option>
         </Select>
 
         <Input
           type="number"
-          title="Numero documento"
+          title="Numero documento *"
           {...register('documentNumber')}
           error={errors.documentNumber?.message}
         />
 
         <Input
-          title="Primer nombre"
+          title="Nombre *"
           {...register('firstName')}
           error={errors.firstName?.message}
         />
 
         <Input
-          title="Apellido"
+          title="Apellido *"
           {...register('lastName')}
           error={errors.lastName?.message}
         />
 
         <Input
-          title="Email"
+          title="Correo electrónico *"
           {...register('email')}
           error={errors.email?.message}
         />
 
         <Input
-          title="Nombre usuario"
+          title="Nombre usuario *"
           {...register('username')}
           error={errors.username?.message}
         />
 
         <Input
           type="password"
-          title="Contraseña"
+          title="Contraseña *"
           {...register('password')}
           error={errors.password?.message}
         />
 
         <Input
           type="password"
-          title="Confirmar contraseña"
+          title="Confirmar contraseña *"
           {...register('confirmPassword')}
           error={errors.confirmPassword?.message}
         />

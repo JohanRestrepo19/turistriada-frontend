@@ -1,10 +1,9 @@
-// TODO: Improve interfaces respect to data model.
 type ModelId = string
 
 export type RequestStatus = 'idle' | 'pending' | 'fulfilled' | 'rejected'
 export type UserRole = 'user' | 'customer' | 'admin' | null
 export type City = 'pereira' | 'dosquebradas' | 'santa rosa'
-export type DocumentType = 'CC' | 'NIT'
+export type DocumentType = 'CC' | 'CE' | 'PA' | 'NIT'
 
 export type Category =
   | 'lugares de interes'

@@ -53,7 +53,7 @@ export const PublishPlaceForm = () => {
       >
         {/* Ciudad */}
         <Select
-          title="Ciudad"
+          title="Ciudad *"
           {...register('city')}
           error={errors.city?.message}
         >
@@ -66,7 +66,7 @@ export const PublishPlaceForm = () => {
 
         {/* Categoría */}
         <Select
-          title="Categoría"
+          title="Categoría *"
           {...register('category')}
           error={errors.category?.message}
         >
@@ -79,7 +79,7 @@ export const PublishPlaceForm = () => {
 
         {/* Nombre del sitio */}
         <Input
-          title="Nombre del sitio que visitaste"
+          title="Nombre del sitio que visitaste *"
           className="sm:col-span-2"
           {...register('name')}
           error={errors.name?.message}
@@ -87,7 +87,7 @@ export const PublishPlaceForm = () => {
 
         {/* Direccion */}
         <Input
-          title="Dirección"
+          title="Dirección *"
           className="sm:col-span-2"
           {...register('location')}
           error={errors.location?.message}
@@ -95,7 +95,7 @@ export const PublishPlaceForm = () => {
 
         {/* Mas sobre el sitio */}
         <TextArea
-          title="Cuentanos mas sobre tu experiencia"
+          title="Cuentanos mas sobre tu experiencia *"
           className="sm:col-span-2 w-full"
           {...register('description')}
           error={errors.description?.message}
@@ -148,7 +148,7 @@ export const PublishPlaceForm = () => {
 
         {/* Fotos */}
         <FileInput
-          title="Subir imagenes"
+          title="Subir imagen *"
           className="sm:col-span-2"
           {...register('image')}
           error={errors.image?.message}

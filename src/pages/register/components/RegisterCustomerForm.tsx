@@ -54,33 +54,33 @@ export const RegisterCustomerForm = () => {
         />
         {/* Registro mercantil */}
         <Input
-          title="Registro mercantil"
+          title="Registro mercantil *"
           {...register('commercialRegistration')}
           error={errors.commercialRegistration?.message}
         />
         {/* Nombre de compañía */}
         <Input
           className="sm:col-span-2"
-          title="Nombre de la compañía"
+          title="Nombre de la empresa *"
           {...register('companyName')}
           error={errors.companyName?.message}
         />
         {/* Direccion */}
         <Input
-          title="Dirección"
+          title="Dirección *"
           {...register('location')}
           error={errors.location?.message}
         />
         {/* Numero de telefono */}
         <Input
           type="number"
-          title="Número de teléfono"
+          title="Número de teléfono *"
           {...register('phone')}
           error={errors.phone?.message}
         />
         {/* Correo electronico */}
         <Input
-          title="Email"
+          title="Correo electrónico *"
           {...register('email')}
           error={errors.email?.message}
         />
@@ -93,14 +93,14 @@ export const RegisterCustomerForm = () => {
         {/* Contraseña */}
         <Input
           type="password"
-          title="Contraseña"
+          title="Contraseña *"
           {...register('password')}
           error={errors.password?.message}
         />
         {/* Confirmar contraseña */}
         <Input
           type="password"
-          title="Confirmar contraseña"
+          title="Confirmar contraseña *"
           {...register('confirmPassword')}
           error={errors.confirmPassword?.message}
         />
