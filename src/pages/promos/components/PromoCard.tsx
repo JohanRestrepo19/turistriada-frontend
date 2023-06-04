@@ -55,18 +55,24 @@ export const PromoCard = ({ promo }: PromoCardProps) => {
         {/* Promo Published by */}
         <div>
           <p className="mb-2 text-justify">
-            <span className="font-semibold">
-              Publicada por: {customer?.companyName}
-            </span>
+            <span className="font-semibold">Publicada por: </span>
+               {customer?.companyName}
           </p>
         </div>
 
         {/* Promo Location */}
         <div>
           <p className="mb-2 text-justify">
-            <span className="font-semibold">
-              Dirección: {customer?.location}
-            </span>
+            <span className="font-semibold">Dirección: </span>
+              {customer?.location}
+          </p>
+        </div>
+
+        {/* Promo Phone */}
+        <div>
+          <p className="mb-2 text-justify">
+            <span className="font-semibold">Teléfono: </span>
+              {customer?.phone}
           </p>
         </div>
       </div>

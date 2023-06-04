@@ -7,6 +7,7 @@ import { PublishPlace, publishPlaceResolver } from '../validations/PublishPlace'
 import type { Category, City } from '@/common/types'
 import { useAppSelector } from '@/common/hooks'
 import { selectAuthUser } from '@/store/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const MAX_ACTIVITIES_FIELDS = 5
 
@@ -15,10 +16,11 @@ const categories: Category[] = [
   'lugares de interes',
   'comida',
   'hospedaje',
-  'instituciones culturales'
+  'centros culturales'
 ]
 
 export const PublishPlaceForm = () => {
+  const navigate = useNavigate()
   const authUser = useAppSelector(selectAuthUser)
   const {
     register,
@@ -42,6 +44,7 @@ export const PublishPlaceForm = () => {
     })
     if (response.hasError) return toast.error(response.errorMsg)
     toast.success('Lugar creado correctamente')
+    navigate('/')
     reset()
   }
 

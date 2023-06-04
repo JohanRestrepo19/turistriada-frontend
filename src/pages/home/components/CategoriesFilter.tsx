@@ -15,6 +15,12 @@ export const CategoriesFilter = () => {
         onClick={() => handleClickCategory('todo')}
         className="btn btn-ghost"
       >
+        Todos
+      </button>
+      <button
+        onClick={() => handleClickCategory('lugares de interes')}
+        className="btn btn-ghost"
+      >
         Lugares de interés
       </button>
       <button

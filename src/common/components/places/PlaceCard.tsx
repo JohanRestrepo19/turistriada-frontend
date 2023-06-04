@@ -33,22 +33,33 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         </div>
 
         <p className="mb-2 font-light">
+          <span className="font-semibold">Ciudad: </span>
+          {place.city}
+        </p>
+
+        <p className="mb-2 font-light">
           <span className="font-semibold">Dirección: </span>
           {place.location}
         </p>
 
+        <p className="mb-2 font-light">
+          <span className="font-semibold">Categoría: </span>
+          {place.category}
+        </p>
+
         {/* Card description */}
         <div>
-          <p className="h-32 text-justify">
+          <p className="h-32 font-light">
             <span className="font-semibold">Descripción: </span>
             {place.description}
           </p>
         </div>
-        <div className="card-actions justify-center">
-          <Button styleType="primary" rounded onClick={handleClickDetails}>
-            Ver detalles
-          </Button>
-        </div>
+      </div>
+
+      <div className="card-actions justify-center">
+        <Button styleType="primary" rounded onClick={handleClickDetails}>
+          Ver detalles
+        </Button>
       </div>
     </div>
   )
