@@ -143,7 +143,7 @@ export const PublishPlaceForm = () => {
               append({ name: '', price: 0 })
           }}
         >
-          Añadir actividad
+          Añadir producto/servicio
         </Button>
 
         {/* Fotos */}
