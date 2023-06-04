@@ -68,11 +68,11 @@ interface PromosResponse extends BaseResponse {
 export const getAllPromos = async (): Promise<PromosResponse> => {
   try {
     const promos: Promo[] = []
-    const latestPlacesQuery = query(
+    const promosQuery = query(
       collection(FirestoreDB, 'promos'),
       orderBy('createdAt', 'desc')
     )
-    const promosSnapshot = await getDocs(latestPlacesQuery)
+    const promosSnapshot = await getDocs(promosQuery)
 
     for (const promo of promosSnapshot.docs) {
       const result: Promo = {

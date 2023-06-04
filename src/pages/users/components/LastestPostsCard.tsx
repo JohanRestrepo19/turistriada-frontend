@@ -4,28 +4,35 @@ import { useEffect, useState } from 'react'
 import { UserPostsGrid } from './UserPostsGrid'
 import { UserPostsList } from './UserPostsList'
 import { Place } from '@/common/types'
+import { Loader } from '@/common/components'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
+import { getPlacesByUserId } from '@/services/firebase'
+import { toast } from 'react-toastify'
 
 export const LastestPostsCard = () => {
+  const authUser = useAppSelector(selectAuthUser)
+
   const [activeTab, setActiveTab] = useState(1)
   const handleTab = (tabNumber: number) => {
     setActiveTab(tabNumber)
   }
 
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [places, setPlaces] = useState<Place[]>([]) // Estado para almacenar el arreglo de places
 
   useEffect(() => {
     const fetchPlaces = async () => {
-      try {
-        const response = await fetch('/src/common/data/places.json') // Ruta al archivo JSON
-        const data = await response.json()
-        setPlaces(data)
-      } catch (error) {
-        console.error('Error al obtener los places:', error)
-      }
+      const response = await getPlacesByUserId(authUser?._id as string)
+      if (response.hasError) return toast.error(response.errorMsg)
+      setPlaces(response.places as Place[])
+      setIsLoading(false)
     }
 
     fetchPlaces()
-  }, [])
+  }, [authUser?._id])
+
+  if (isLoading) return <Loader />
 
   return (
     <>

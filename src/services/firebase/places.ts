@@ -3,8 +3,10 @@ import {
   addDoc,
   collection,
   getDocs,
+  orderBy,
   query,
-  setDoc
+  setDoc,
+  where
 } from 'firebase/firestore'
 import { FirebaseStorage, FirestoreDB } from '@/setup/firebase'
 import { PublishPlace } from '@/pages/places/validations/PublishPlace' //FIX: Remove this dependency.
@@ -14,7 +16,7 @@ import {
   ref,
   uploadBytes
 } from 'firebase/storage'
-import type { Review } from '@/common/types'
+import type { Review, Place } from '@/common/types'
 import { convertFirestoreTimeStampToDate } from '@/common/utils'
 
 interface BaseResponse {
@@ -106,6 +108,48 @@ export const createPlace = async (
     })
 
     return { hasError: false }
+  } catch (error) {
+    const firestoreError = error as FirestoreError
+    console.warn('Hubo un error: ', firestoreError.message)
+    return { hasError: true, errorMsg: firestoreError.message }
+  }
+}
+
+interface PlacesByUserResponse extends BaseResponse {
+  places?: Place[]
+}
+
+export const getPlacesByUserId = async (
+  userId: string
+): Promise<PlacesByUserResponse> => {
+  try {
+    const places: Place[] = []
+    const latestPlacesQuery = query(
+      collection(FirestoreDB, 'places'),
+      where('createdByUserId', '==', userId),
+      orderBy('createdAt', 'desc')
+    )
+    const promosSnapshot = await getDocs(latestPlacesQuery)
+
+    for (const placeDoc of promosSnapshot.docs) {
+      const result: Place = {
+        _id: placeDoc.id,
+        createdAt: convertFirestoreTimeStampToDate(
+          placeDoc.get('createdAt')
+        ).toString(),
+        city: placeDoc.get('city'),
+        name: placeDoc.get('name'),
+        imgUrl: placeDoc.get('imgUrl'),
+        category: placeDoc.get('category'),
+        location: placeDoc.get('location'),
+        reviews: placeDoc.get('reviews'),
+        description: placeDoc.get('description'),
+        activities: placeDoc.get('activities'),
+        createdByUserId: placeDoc.get('createdByUserId')
+      }
+      places.push(result)
+    }
+    return { hasError: false, places: places }
   } catch (error) {
     const firestoreError = error as FirestoreError
     console.warn('Hubo un error: ', firestoreError.message)
