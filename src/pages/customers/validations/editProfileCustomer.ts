@@ -9,10 +9,7 @@ const editProfileCustomerSchema = object({
     'El campo "Registro mercantil" no puede estar vacío.'
   ),
   companyName: string().required('Por favor ingresa el nombre de tu compañía.'),
-  location: string().required('Por favor ingresa la direccion de tu compañía.'),
-  phone: string()
-    .min(7, 'Tu telefono debe ser de al menos 7 digitos.')
-    .required('Por favor ingresa tu numero de celular.')
+  location: string().required('Por favor ingresa la direccion de tu compañía.')
 })
 
 export type EditProfileCustomer = InferType<typeof editProfileCustomerSchema>
