@@ -6,10 +6,8 @@ interface UserPostsListProps {
 
 export const UserPostsList = ({ placeList }: UserPostsListProps) => {
   return (
-    <div className="card w-96 bg-primary-content my-4 shadow-xl">
+    <div className="card w-96 bg-primary-content my-4 shadow-xl mx-7">
       <div className="flex items-center justify-around pt-6 px-4">
-        <p className="card-title mr-2">Nombre del sitio:</p>
-        <p className="text-lg font-light">{placeList.name}</p>
         <div className="dropdown dropdown-hover">
           <label tabIndex={0} className="text-lg font-extrabold">
             ☰
@@ -26,6 +24,8 @@ export const UserPostsList = ({ placeList }: UserPostsListProps) => {
             </li>
           </ul>
         </div>
+        <p className="card-title mr-2">Nombre del sitio:</p>
+        <p className="text-lg font-light">{placeList.name}</p>
       </div>
       <figure className="pt-6">
         <img src={placeList.imgUrl} alt="place" className="rounded-sm w-full h-60" />
