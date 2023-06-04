@@ -27,7 +27,6 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
     document: user.documentNumber,
     name: user.firstName,
     lastname: user.lastName,
-    email: user.email
   })
 
   // FIXME: Encontrar tipo para el evento...
@@ -57,13 +56,7 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
           className="grid grid-cols-1 sm:grid-cols-2 gap-8"
           onSubmit={handleSubmit(handleSubmitForm)}
         >
-          <Input
-            title="Nombre usuario"
-            value={userData.username}
-            {...register('username')}
-            error={errors.username?.message}
-            onChange={handleInputChange}
-          />
+          <Input title="Email" value={user.email} disabled />
 
           <Input
             type="number"
@@ -89,13 +82,12 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
           />
 
           <Input
-            title="Email"
-            value={user.email}
-            {...register('email')}
-            error={errors.email?.message}
+            title="Nombre usuario"
+            value={userData.username}
+            {...register('username')}
+            error={errors.username?.message}
             onChange={handleInputChange}
           />
-
           <Input type="date" title="Fecha de nacimiento" />
 
           <Input
