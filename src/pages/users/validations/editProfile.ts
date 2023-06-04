@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 const editProfileSchema = object({
   email: string(),
-  document: string()
+  documentNumber: string()
     .min(10, 'Tu documento debe tener mínimo 10 digitos')
     .required('Documento no puede quedar vacío.'),
   username: string().required('Por favor ingresa tu username'),

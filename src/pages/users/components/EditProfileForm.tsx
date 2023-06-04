@@ -1,13 +1,20 @@
-import { Button, Input } from '@/common/components'
-import { User } from '@/common/types'
-import { EditProfile, editProfileResolver } from '../validations/editProfile'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { Button, Input } from '@/common/components'
+import { EditProfile, editProfileResolver } from '../validations/editProfile'
+import { updateUserInfo } from '@/services/firebase'
+import { useAppDispatch } from '@/common/hooks'
+import type { User } from '@/common/types'
+import { setAuthUser } from '@/store/slices/authSlice'
 
 interface EditProfileFormProps {
   user: User
 }
 
 export const EditProfileForm = ({ user }: EditProfileFormProps) => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -18,13 +25,17 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
-      document: user.documentNumber as string,
+      documentNumber: user.documentNumber as string,
       email: user.email
     }
   })
 
-  const handleSubmitForm = (data: EditProfile) => {
-    console.log('Data para editar: ', data)
+  const handleSubmitForm = async (data: EditProfile) => {
+    const response = await updateUserInfo(user._id, { ...data })
+    if (response.hasError) return toast.error(response.errorMsg)
+    dispatch(setAuthUser(response.user as User))
+    toast.success('Información actualizada exitosamente')
+    navigate(`/users/${user._id}`)
   }
 
   return (
@@ -44,21 +55,18 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
           Editar perfil
         </p>
         <div className="h-0.5 w-3/3 bg-primary mb-2"></div>
+
         <form
           className="grid grid-cols-1 sm:grid-cols-2 gap-8"
           onSubmit={handleSubmit(handleSubmitForm)}
         >
-          <Input
-            title="Email"
-            {...register('email')}
-            disabled
-          />
+          <Input title="Email" {...register('email')} disabled />
 
           <Input
             type="number"
             title="Numero documento"
-            {...register('document')}
-            error={errors.document?.message}
+            {...register('documentNumber')}
+            error={errors.documentNumber?.message}
           />
 
           <Input
@@ -79,7 +87,7 @@ export const EditProfileForm = ({ user }: EditProfileFormProps) => {
             className="col-span-2"
             error={errors.username?.message}
           />
-          
+
           <Button type="submit" styleType="primary" className="col-span-2">
             EDITAR
           </Button>

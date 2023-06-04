@@ -27,7 +27,6 @@ export const EditProfileCustomerForm = ({
     formState: { errors }
   } = useForm<EditProfileCustomer>({
     resolver: EditProfileCustomerResolver,
-    mode: 'all',
     defaultValues: {
       username: customer.username,
       companyName: customer.companyName,
@@ -39,7 +38,6 @@ export const EditProfileCustomerForm = ({
   })
 
   const handleSubmitForm = async (data: EditProfileCustomer) => {
-    console.log('Data para editar: ', data)
     const response = await updateCustomerInfo(customer._id, { ...data })
     if (response.hasError) return toast.error(response.errorMsg)
     dispatch(setAuthUser(response.customer as Customer))
