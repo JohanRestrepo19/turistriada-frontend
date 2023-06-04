@@ -12,7 +12,7 @@ export const getLatestPlaces = async (): Promise<Place[]> => {
   const latestPlaces: Place[] = []
   const latestPlacesQuery = query(
     collection(FirestoreDB, 'places'),
-    orderBy('createdAt'),
+    orderBy('createdAt', 'desc'),
     limit(10)
   )
   const latestPlacesSnapshot = await getDocs(latestPlacesQuery)

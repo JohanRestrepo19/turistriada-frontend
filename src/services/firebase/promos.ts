@@ -1,6 +1,15 @@
 import { Promo } from '@/common/types'
+import { convertFirestoreTimeStampToDate } from '@/common/utils'
 import { FirebaseStorage, FirestoreDB } from '@/setup/firebase'
-import { FirestoreError, addDoc, collection, setDoc } from 'firebase/firestore'
+import {
+  FirestoreError,
+  addDoc,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  setDoc
+} from 'firebase/firestore'
 import {
   StorageError,
   getDownloadURL,
@@ -49,6 +58,39 @@ export const createPromo = async (
   } catch (error) {
     const firestoreError = error as FirestoreError
     console.error('Hubo un error: ', firestoreError.message)
+    return { hasError: true, errorMsg: firestoreError.message }
+  }
+}
+
+interface PromosResponse extends BaseResponse {
+  promos?: Promo[]
+}
+export const getAllPromos = async (): Promise<PromosResponse> => {
+  try {
+    const promos: Promo[] = []
+    const latestPlacesQuery = query(
+      collection(FirestoreDB, 'places'),
+      orderBy('createdAt', 'desc')
+    )
+    const promosSnapshot = await getDocs(latestPlacesQuery)
+
+    for (const promo of promosSnapshot.docs) {
+      const result: Promo = {
+        _id: promo.id,
+        createdAt: convertFirestoreTimeStampToDate(
+          promo.get('createdAt')
+        ).toString(),
+        createdByUserId: promo.get('createdByUserId'),
+        description: promo.get('description'),
+        promoImgUrl: promo.get('promoImgUrl'),
+        title: promo.get('title')
+      }
+      promos.push(result)
+    }
+
+    return { hasError: false, promos }
+  } catch (error) {
+    const firestoreError = error as FirestoreError
     return { hasError: true, errorMsg: firestoreError.message }
   }
 }
