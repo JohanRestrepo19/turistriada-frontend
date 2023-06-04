@@ -26,7 +26,7 @@ export const CustomerPromotions = () => {
       <div className="h-1 w-3/3 bg-primary"></div>
       <div className="max-h-[700px] overflow-y-auto">
         {places.map(place => (
-          <div className="card w-96 bg-primary-content my-4 shadow-xl">
+          <div className="card w-96 bg-primary-content my-4 shadow-xl mr-6">
             <div className="flex items-center justify-around pt-6 px-4">
               <p className="card-title mr-2 text-lg font-bold">{place.name}</p>
             </div>

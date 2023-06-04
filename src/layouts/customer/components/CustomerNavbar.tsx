@@ -1,9 +1,16 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Avatar, TuristriadaHeading } from '@/common/components'
 
 export const CustomerNavbar = () => {
+  const navigate = useNavigate()
+
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-primary' : ''
+
+  const handleProfile = () => {
+    // TODO: Se debe usar el id del usuario que este logeado actualmente...
+    navigate(`/customers/:userId`)
+  }
 
   return (
     <>
@@ -24,7 +31,9 @@ export const CustomerNavbar = () => {
               Publica tus promociones
             </NavLink>
             <button>Salir</button>
-            <Avatar className="hidden lg:block" />
+            <button onClick={handleProfile}>
+              <Avatar className="hidden lg:block" />
+            </button>
           </nav>
         </div>
       </div>
