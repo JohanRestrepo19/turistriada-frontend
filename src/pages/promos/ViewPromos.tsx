@@ -17,8 +17,6 @@ export const ViewPromos = () => {
       setPromos(response.promos as Promo[])
       setIsLoading(false)
     }
-
-    console.log('El componente fue montado ✋')
     getPromos()
   }, [])
 
