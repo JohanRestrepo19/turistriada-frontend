@@ -15,7 +15,7 @@ export const CategoriesFilter = () => {
         onClick={() => handleClickCategory('todo')}
         className="btn btn-ghost"
       >
-        Recomendaciones
+        Lugares de interés
       </button>
       <button
         onClick={() => handleClickCategory('comida')}

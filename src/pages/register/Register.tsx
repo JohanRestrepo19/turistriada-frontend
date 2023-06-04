@@ -9,17 +9,17 @@ export const Register = () => {
 
   return (
     <FormCard>
-    <TuristriadaHeading />
+      <TuristriadaHeading />
       <Button
         styleType="primary"
-        className='my-4'
+        className="my-4"
         onClick={() => handleUserButton('user')}
-        >
+      >
         ¿Eres usuario?
       </Button>
       <Button
         styleType="primary"
-        className='mb-4'
+        className="mb-4"
         onClick={() => handleUserButton('customer')}
       >
         ¿Eres empresa?

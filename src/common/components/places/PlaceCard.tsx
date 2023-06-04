@@ -44,12 +44,11 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
             {place.description}
           </p>
         </div>
-      </div>
-
-      <div className="card-actions justify-center mt-2">
-        <Button styleType="primary" rounded onClick={handleClickDetails}>
-          Ver detalles
-        </Button>
+        <div className="card-actions justify-center">
+          <Button styleType="primary" rounded onClick={handleClickDetails}>
+            Ver detalles
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -56,7 +56,7 @@ export const LastestPostsCard = () => {
       </h2>
       <div className="max-h-[700px] overflow-y-auto">
         <div className="text-center items-center">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4">
             {activeTab === 1 &&
               places.map(place => (
                 <UserPostsGrid placeList={place} key={place._id} />
