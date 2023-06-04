@@ -24,10 +24,20 @@ export const CustomerPromotions = () => {
 
   if (isLoading) return <Loader />
 
+  if (promos.length === 0) 
+  return(
+    <>
+      <h2 className="text-xl my-4 text-primary font-bold text-center">
+        Tus promociones y descuentos 
+      </h2>
+      <div className="w-full text-center mt-2">Aun no tienes promociones publicadas 🙁</div>
+    </>
+  ) 
+
   return (
     <>
       <h2 className="text-xl my-4 text-primary font-bold text-center">
-        Promociones y descuentos activos
+        Tus promociones y descuentos 
       </h2>
       <div className="h-1 w-3/3 bg-primary"></div>
       <div className="max-h-[700px] overflow-y-auto">
