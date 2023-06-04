@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Avatar, TuristriadaHeading } from '@/common/components'
-import { useAppDispatch } from '@/common/hooks'
-import { logout } from '@/store/slices/authSlice'
+import { useAppDispatch, useAppSelector } from '@/common/hooks'
+import { logout, selectAuthUser } from '@/store/slices/authSlice'
 import { toast } from 'react-toastify'
 
 export const UserNavbar = () => {
   const dispatch = useAppDispatch()
+  const authUser = useAppSelector(selectAuthUser)
   const navigate = useNavigate()
 
   const handleClickLogo = () => {
@@ -21,8 +22,7 @@ export const UserNavbar = () => {
   }
 
   const handleProfile = () => {
-    // TODO: Se debe usar el id del usuario que este logeado actualmente...
-    navigate(`/users/:userId`)
+    navigate(`/users/${authUser?._id}`)
   }
 
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>

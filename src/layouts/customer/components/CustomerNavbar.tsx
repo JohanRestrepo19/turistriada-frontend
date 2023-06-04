@@ -1,19 +1,19 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Avatar, TuristriadaHeading } from '@/common/components'
-import { useAppDispatch } from '@/common/hooks'
-import { logout } from '@/store/slices/authSlice'
+import { useAppDispatch, useAppSelector } from '@/common/hooks'
+import { logout, selectAuthUser } from '@/store/slices/authSlice'
 import { toast } from 'react-toastify'
 
 export const CustomerNavbar = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const authUser = useAppSelector(selectAuthUser)
 
   const handleActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-primary' : ''
 
   const handleProfile = () => {
-    // TODO: Se debe usar el id del usuario que este logeado actualmente...
-    navigate(`/customers/:userId`)
+    navigate(`/customers/${authUser?._id}`)
   }
 
   const handleClickLogout = () => {

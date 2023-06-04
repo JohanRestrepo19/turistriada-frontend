@@ -42,6 +42,7 @@ export interface Customer {
   nit: string
   phone: string
   profileImgUrl?: string
+  username?: string
   role: 'customer'
 }
 

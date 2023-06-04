@@ -1,8 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
-
 import { AuthLayout } from '@/layouts/auth'
 import { UserLayout } from '@/layouts/user'
-
 import { Home } from '@/pages/home'
 import { Login } from '@/pages/login'
 import { Register, RegisterCustomer, RegisterUser } from '@/pages/register'
@@ -10,7 +8,9 @@ import { EditProfile, UserProfile } from '@/pages/users'
 import { CustomerLayout } from '@/layouts/customer'
 import { PlaceDetails, PublishPlace } from '@/pages/places'
 import { CustomerProfile, PublishPromo } from '@/pages/customers'
+import { EditProfileCustomer } from '@/pages/customers/EditProfileCustomer'
 import { ViewPromos } from '@/pages/promos'
+
 
 export const AppRouter = () => {
   return (
@@ -34,7 +34,6 @@ export const AppRouter = () => {
         </Route>
 
         <Route element={<CustomerLayout />}>
-          <Route path="/customers" element={<h1>Customers</h1>} />
           <Route path="/customers/:customerId" element={<CustomerProfile />} />
           <Route
             path="/customers/promos/new-promo"
@@ -43,6 +42,10 @@ export const AppRouter = () => {
           <Route
             path="/customers/promos/new-service"
             element={<h1>Services - Products</h1>}
+          />
+          <Route
+            path="/customers/:customerId/edit"
+            element={<EditProfileCustomer />}
           />
         </Route>
       </Routes>
