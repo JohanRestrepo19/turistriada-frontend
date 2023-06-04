@@ -15,7 +15,7 @@ const categories: Category[] = [
   'lugares de interes',
   'comida',
   'hospedaje',
-  'instituciones culturales'
+  'centros culturales'
 ]
 
 export const PublishPlaceForm = () => {

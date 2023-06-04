@@ -9,7 +9,7 @@ export type Category =
   | 'lugares de interes'
   | 'comida'
   | 'hospedaje'
-  | 'instituciones culturales'
+  | 'centros culturales'
   | 'todo'
 
 export interface User {
