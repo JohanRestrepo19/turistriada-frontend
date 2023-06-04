@@ -1,26 +1,18 @@
 import { User } from '@/common/types'
 import { PersonalInformationCard } from './components/PersonalInformationCard'
 import { LastestPostsCard } from './components/LastestPostsCard'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
 
 export const UserProfile = () => {
-  // TODO: Props que van a llegar mas adelante a este componente
-  const user: User = {
-    documentType: 'CC',
-    documentNumber: '100452621',
-    username: 'Brandddd',
-    firstName: 'Brandon',
-    lastName: 'Alvarez',
-    email: 'hola.correo@utp.edu.co',
-    role: 'user',
-    _id: 'ajfdsjk3278ksad',
-    profileImgUrl: 'https://avatars.githubusercontent.com/u/54783819?v=4'
-  }
+  
+  const authUser = useAppSelector(selectAuthUser) as User
 
   return (
     <>
       <div className="flex">
         <div className="mx-4">
-          <PersonalInformationCard user={user} />
+          <PersonalInformationCard user={authUser} />
         </div>
         <div className="mx-4 w-full">
           <LastestPostsCard />

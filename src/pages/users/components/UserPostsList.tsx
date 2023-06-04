@@ -8,22 +8,6 @@ export const UserPostsList = ({ placeList }: UserPostsListProps) => {
   return (
     <div className="card w-96 bg-primary-content my-4 shadow-xl mx-7">
       <div className="flex items-center justify-around pt-6 px-4">
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="text-lg font-extrabold">
-            ☰
-          </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-primary-light rounded-box w-52"
-          >
-            <li>
-              <a>Editar</a>
-            </li>
-            <li>
-              <a>Eliminar</a>
-            </li>
-          </ul>
-        </div>
         <p className="card-title mr-2">Nombre del sitio:</p>
         <p className="text-lg font-light">{placeList.name}</p>
       </div>

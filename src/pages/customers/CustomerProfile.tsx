@@ -7,27 +7,14 @@ import { selectAuthUser } from '@/store/slices/authSlice'
 export const CustomerProfile = () => {
   const authUser = useAppSelector(selectAuthUser) as Customer
 
-  const customer: Customer = {
-    commercialRegistration: authUser.commercialRegistration,
-    nit: authUser.nit,
-    companyName: authUser.companyName,
-    location: authUser.location,
-    email: authUser.email,
-    username: authUser.username,
-    _id: authUser._id,
-    phone: authUser.phone,
-    role: authUser.role,
-    profileImgUrl: authUser.profileImgUrl
-  }
-
   return (
     <>
       <div className="flex">
         <div className="mx-4">
-          <PersonalInformationCard customer={customer} />
+          <PersonalInformationCard customer={authUser} />
         </div>
         <div className="mx-4 w-auto">
-          <CustomerPromotions key={customer._id} />
+          <CustomerPromotions key={authUser._id} />
         </div>
       </div>
     </>

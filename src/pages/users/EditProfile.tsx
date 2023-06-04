@@ -1,19 +1,10 @@
 import { User } from '@/common/types'
 import { EditProfileForm } from './components/EditProfileForm'
+import { useAppSelector } from '@/common/hooks'
+import { selectAuthUser } from '@/store/slices/authSlice'
 
 export const EditProfile = () => {
-  // TODO: Props que van a llegar mas adelante a este componente
-  const user: User = {
-    documentType: 'CC',
-    documentNumber: '100452621',
-    username: 'Brandddd',
-    firstName: 'Brandon',
-    lastName: 'Alvarez',
-    email: 'hola.correo@utp.edu.co',
-    role: 'user',
-    _id: 'ajfdsjk3278ksad',
-    profileImgUrl: 'https://avatars.githubusercontent.com/u/54783819?v=4'
-  }
+  const authUser = useAppSelector(selectAuthUser) as User
 
-  return <EditProfileForm user={user} />
+  return <EditProfileForm user={authUser} />
 }
