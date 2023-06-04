@@ -8,6 +8,8 @@ import {
 import { updateCustomerInfo } from '@/services/firebase'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '@/common/hooks'
+import { setAuthUser } from '@/store/slices/authSlice'
 
 interface EditProfileCustomerFormProps {
   customer: Customer
@@ -17,6 +19,7 @@ export const EditProfileCustomerForm = ({
   customer
 }: EditProfileCustomerFormProps) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const {
     register,
@@ -39,6 +42,7 @@ export const EditProfileCustomerForm = ({
     console.log('Data para editar: ', data)
     const response = await updateCustomerInfo(customer._id, { ...data })
     if (response.hasError) return toast.error(response.errorMsg)
+    dispatch(setAuthUser(response.customer as Customer))
     toast.success('Información actualizada exitosamente')
     navigate(`/customers/${customer._id}`)
   }

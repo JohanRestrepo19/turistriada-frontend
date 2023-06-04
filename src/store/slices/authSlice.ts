@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   loginToFirebase,
   logoutFromFirebase,
@@ -69,7 +69,11 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    setAuthUser: (state, action: PayloadAction<User | Customer>) => {
+      state.user = action.payload
+    }
+  },
   extraReducers: builder => {
     //Register user
     builder
@@ -150,3 +154,4 @@ export const selectAuthError = (state: RootState) => state.auth.error
 export const selectAuthUser = (state: RootState) => state.auth.user
 
 //Actions.
+export const { setAuthUser } = authSlice.actions

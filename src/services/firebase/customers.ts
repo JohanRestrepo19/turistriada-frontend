@@ -35,13 +35,16 @@ export const getCustomerById = async (
   }
 }
 
+interface UpdateCustomerResponse extends BaseResponse {
+  customer?: Customer
+}
 export const updateCustomerInfo = async (
   customerId: string,
   customerInfo: Omit<
     Customer,
     '_id' | 'email' | 'phone' | 'profileImgUrl' | 'role'
   >
-): Promise<BaseResponse> => {
+): Promise<UpdateCustomerResponse> => {
   try {
     const customerRef = doc(FirestoreDB, 'customers', customerId)
     await updateDoc(customerRef, {
@@ -51,7 +54,8 @@ export const updateCustomerInfo = async (
       username: customerInfo.username,
       commercialRegistration: customerInfo.commercialRegistration
     })
-    return { hasError: false }
+    const response = await getCustomerById(customerId)
+    return { hasError: false, customer: response.customer }
   } catch (error) {
     const firestoreError = error as FirestoreError
     console.error(firestoreError.message)
