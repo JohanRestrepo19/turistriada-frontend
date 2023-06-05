@@ -32,7 +32,68 @@ export const LastestPostsCard = () => {
     fetchPlaces()
   }, [authUser?._id])
 
-  if (isLoading) return <Loader />
+  if (isLoading)
+    return (
+      <>
+        <div className="tabs mt-4 items-center justify-around">
+          <button
+            onClick={() => handleTab(1)}
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 1
+                ? 'text-primary-focus border-primary-focus'
+                : 'text-primary-light border-primary-light'
+            }`}
+          >
+            <FontAwesomeIcon icon={faTableCellsLarge} />
+          </button>
+          <button
+            onClick={() => handleTab(2)}
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 2
+                ? 'text-primary-focus border-primary-focus'
+                : 'text-primary-light border-primary-light'
+            }`}
+          >
+            <FontAwesomeIcon icon={faImage} />
+          </button>
+        </div>
+        <h2 className="text-2xl my-4 text-primary font-bold text-center">
+          Tus últimas publicaciones
+        </h2>
+        <Loader />
+      </>
+    )
+
+  if (places.length === 0)
+    return (
+      <>
+        <div className="tabs mt-4 items-center justify-around">
+          <button
+            onClick={() => handleTab(1)}
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 1
+                ? 'text-primary-focus border-primary-focus'
+                : 'text-primary-light border-primary-light'
+            }`}
+          >
+            <FontAwesomeIcon icon={faTableCellsLarge} />
+          </button>
+          <button
+            onClick={() => handleTab(2)}
+            className={`tab tab-lg tab-bordered ${
+              activeTab === 2
+                ? 'text-primary-focus border-primary-focus'
+                : 'text-primary-light border-primary-light'
+            }`}
+          >
+            <FontAwesomeIcon icon={faImage} />
+          </button>
+        </div>
+        <h2 className="text-2xl my-4 text-primary font-bold text-center">
+          Aún no tienes publicaciones 🙁
+        </h2>
+      </>
+    )
 
   return (
     <>
