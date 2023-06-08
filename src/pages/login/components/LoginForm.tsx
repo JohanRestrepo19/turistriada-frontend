@@ -23,7 +23,8 @@ export const LoginForm = () => {
       .unwrap()
       .then(authUser => {
         if (authUser?.role === 'user') navigate('/')
-        if (authUser?.role === 'customer') navigate(`/customers/${authUser._id}`)
+        if (authUser?.role === 'customer')
+          navigate(`/customers/${authUser._id}`)
       })
       .catch(rejectedValue => {
         toast.error(rejectedValue)

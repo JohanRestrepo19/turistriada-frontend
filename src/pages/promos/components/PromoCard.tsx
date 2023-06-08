@@ -56,7 +56,7 @@ export const PromoCard = ({ promo }: PromoCardProps) => {
         <div>
           <p className="mb-2 text-justify">
             <span className="font-semibold">Publicada por: </span>
-               {customer?.companyName}
+            {customer?.companyName}
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export const PromoCard = ({ promo }: PromoCardProps) => {
         <div>
           <p className="mb-2 text-justify">
             <span className="font-semibold">Dirección: </span>
-              {customer?.location}
+            {customer?.location}
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export const PromoCard = ({ promo }: PromoCardProps) => {
         <div>
           <p className="mb-2 text-justify">
             <span className="font-semibold">Teléfono: </span>
-              {customer?.phone}
+            {customer?.phone}
           </p>
         </div>
       </div>

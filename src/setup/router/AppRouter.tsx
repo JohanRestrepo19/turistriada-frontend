@@ -11,7 +11,6 @@ import { CustomerProfile, PublishPromo } from '@/pages/customers'
 import { EditProfileCustomer } from '@/pages/customers/EditProfileCustomer'
 import { ViewPromos } from '@/pages/promos'
 
-
 export const AppRouter = () => {
   return (
     <>

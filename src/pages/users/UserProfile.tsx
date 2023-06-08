@@ -5,7 +5,6 @@ import { useAppSelector } from '@/common/hooks'
 import { selectAuthUser } from '@/store/slices/authSlice'
 
 export const UserProfile = () => {
-  
   const authUser = useAppSelector(selectAuthUser) as User
 
   return (
